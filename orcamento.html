@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forja · Orçamento instantâneo</title>
+  <meta name="description" content="Simule o orçamento da sua peça de metal sob medida: escolha uma peça-modelo ou envie seu desenho DXF e veja preço e prazo na hora. Valores simulados.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/orcamento.css">
+  <link rel="stylesheet" href="css/match.css">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Menu
+      </button>
+      <nav id="menu-principal" class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="parceiro.html">Para metalúrgicas</a></li>
+          <li><a href="mercado.html">Mercado</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a class="menu-cta" href="orcamento.html" aria-current="page">Fazer orçamento</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ============================================================
+         ÁREA DO ORÇAMENTO
+         O formulário é ligado ao cálculo pelo arquivo js/orcamento.js.
+         ============================================================ -->
+    <section id="secao-orcamento" class="secao orc-secao" aria-labelledby="titulo-orcamento">
+      <div class="container">
+
+        <header class="orc-topo">
+          <span class="sobrelinha">Simulador</span>
+          <h1 id="titulo-orcamento" tabindex="-1">Orçamento instantâneo</h1>
+          <p class="texto-grande texto-suave">Escolha uma peça-modelo ou envie o seu desenho. O preço e o prazo aparecem na hora, sem esperar a resposta de nenhuma metalúrgica.</p>
+        </header>
+
+        <noscript>
+          <p class="aviso aviso-erro">O simulador precisa de JavaScript ligado no navegador para calcular o preço.</p>
+        </noscript>
+
+        <div class="orc-layout">
+
+          <!-- ===== 1. Modo + peça/desenho ===== -->
+          <div class="orc-bloco orc-bloco-peca cartao">
+            <h2 class="orc-titulo-bloco">1. Sua peça</h2>
+
+            <!-- Abas: peças-modelo ou desenho DXF (setas do teclado trocam de aba) -->
+            <div class="orc-abas" role="tablist" aria-label="Como você quer descrever a peça">
+              <button type="button" role="tab" id="aba-modelo" class="orc-aba" aria-selected="true" aria-controls="painel-modelo">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <span>Peças-modelo</span>
+              </button>
+              <button type="button" role="tab" id="aba-dxf" class="orc-aba" aria-selected="false" aria-controls="painel-dxf" tabindex="-1">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>
+                <span>Enviar meu desenho <abbr title="Drawing Exchange Format, formato de desenho técnico">DXF</abbr></span>
+              </button>
+            </div>
+
+            <!-- Painel A: peças-modelo -->
+            <div role="tabpanel" id="painel-modelo" class="orc-painel" aria-labelledby="aba-modelo">
+              <fieldset class="orc-pecas">
+                <legend>Escolha a peça</legend>
+                <!-- Os cartões das peças são criados pelo js/orcamento.js a partir de js/pecas.js -->
+                <div id="lista-pecas" class="orc-lista-pecas"></div>
+              </fieldset>
+
+              <fieldset class="orc-medidas">
+                <legend>Medidas da peça</legend>
+                <div class="orc-campos-medidas">
+                  <div class="campo" id="grupo-largura">
+                    <label for="medida-largura" id="rotulo-largura">Largura (mm)</label>
+                    <input type="number" id="medida-largura" inputmode="decimal" step="1" aria-describedby="ajuda-largura">
+                    <span class="ajuda" id="ajuda-largura"></span>
+                  </div>
+                  <div class="campo" id="grupo-altura">
+                    <label for="medida-altura" id="rotulo-altura">Altura (mm)</label>
+                    <input type="number" id="medida-altura" inputmode="decimal" step="1" aria-describedby="ajuda-altura">
+                    <span class="ajuda" id="ajuda-altura"></span>
+                  </div>
+                  <div class="campo" id="grupo-furos">
+                    <label for="medida-furos" id="rotulo-furos">Quantidade de furos</label>
+                    <input type="number" id="medida-furos" inputmode="numeric" step="1" aria-describedby="ajuda-furos">
+                    <span class="ajuda" id="ajuda-furos"></span>
+                  </div>
+                  <div class="campo" id="grupo-diametro">
+                    <label for="medida-diametro" id="rotulo-diametro">Diâmetro dos furos (mm)</label>
+                    <input type="number" id="medida-diametro" inputmode="decimal" step="1" aria-describedby="ajuda-diametro">
+                    <span class="ajuda" id="ajuda-diametro"></span>
+                  </div>
+                </div>
+                <!-- Mensagens quando um valor é corrigido (ex.: furos que não cabem) -->
+                <div id="avisos-medidas" class="orc-avisos-medidas" aria-live="polite"></div>
+              </fieldset>
+            </div>
+
+            <!-- Painel B: desenho DXF -->
+            <div role="tabpanel" id="painel-dxf" class="orc-painel" aria-labelledby="aba-dxf" hidden>
+              <p>Envie o desenho da peça em <abbr title="Drawing Exchange Format">DXF</abbr>, o formato que programas de desenho técnico (como AutoCAD, LibreCAD ou SolidWorks) exportam.</p>
+
+              <label class="zona-arquivo" id="zona-arquivo" for="arquivo-dxf">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/></svg>
+                <span class="zona-arquivo-titulo">Escolher arquivo .dxf</span>
+                <span class="zona-arquivo-texto">ou arraste o arquivo para cá</span>
+                <input type="file" id="arquivo-dxf" class="visualmente-oculto" accept=".dxf" aria-describedby="dxf-privacidade dxf-unidades">
+              </label>
+
+              <p class="orc-privacidade" id="dxf-privacidade">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                Seu arquivo é lido no seu navegador. Nada é enviado para nenhum servidor.
+              </p>
+              <p class="ajuda" id="dxf-unidades">Unidades: consideramos o desenho em milímetros. Tamanho máximo do arquivo: 5 MB.</p>
+
+              <div class="grupo-botoes">
+                <button type="button" class="botao botao-secundario" id="botao-usar-exemplo">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"/></svg>
+                  Usar o arquivo de exemplo
+                </button>
+                <a class="botao botao-secundario" href="exemplo.dxf" download>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/></svg>
+                  Baixar arquivo de exemplo
+                </a>
+              </div>
+
+              <!-- Estado da leitura: carregando, erro ou resultado -->
+              <div id="dxf-estado" class="orc-dxf-estado" aria-live="polite"></div>
+              <div id="dxf-erro"></div>
+              <div id="dxf-resultado" class="orc-dxf-resultado" hidden></div>
+            </div>
+          </div>
+
+          <!-- ===== 2. Opções (material, quantidade, acabamento, prazo) ===== -->
+          <div class="orc-bloco orc-bloco-opcoes cartao">
+            <h2 class="orc-titulo-bloco">2. Material e pedido</h2>
+
+            <div class="orc-campos-duplos">
+              <div class="campo">
+                <label for="material">Material</label>
+                <select id="material"></select>
+              </div>
+              <div class="campo">
+                <label for="espessura">Espessura da chapa</label>
+                <select id="espessura"></select>
+              </div>
+              <div class="campo">
+                <label for="quantidade">Quantidade de peças</label>
+                <input type="number" id="quantidade" inputmode="numeric" min="1" max="1000" step="1" value="10" aria-describedby="ajuda-quantidade">
+                <span class="ajuda" id="ajuda-quantidade">De 1 a 1000 peças.</span>
+              </div>
+              <div class="campo">
+                <label for="dobras">Número de dobras por peça</label>
+                <input type="number" id="dobras" inputmode="numeric" min="0" max="10" step="1" value="0" aria-describedby="ajuda-dobras">
+                <span class="ajuda" id="ajuda-dobras">De 0 a 10. Cada dobra é feita na dobradeira.</span>
+              </div>
+            </div>
+
+            <fieldset class="orc-opcoes-radio">
+              <legend>Acabamento</legend>
+              <!-- Opções criadas pelo js/orcamento.js a partir de PRECOS.acabamentos -->
+              <div id="lista-acabamentos" class="orc-lista-radio"></div>
+            </fieldset>
+
+            <fieldset class="orc-opcoes-radio">
+              <legend>Prazo</legend>
+              <div class="orc-lista-radio">
+                <label class="orc-radio">
+                  <input type="radio" name="prazo" value="normal" checked>
+                  <span>
+                    <strong>Normal</strong>
+                    <span class="ajuda">sem acréscimo no preço</span>
+                  </span>
+                </label>
+                <label class="orc-radio">
+                  <input type="radio" name="prazo" value="expresso">
+                  <span>
+                    <strong>Expresso</strong>
+                    <span class="ajuda">+<span data-dado="acrescimoExpresso">35%</span> no preço, prazo menor</span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Avisos gerais (ex.: acabamento trocado porque não serve no material) -->
+            <p id="anuncio-opcoes" class="ajuda orc-anuncio-opcoes" aria-live="polite"></p>
+          </div>
+
+          <!-- ===== Coluna lateral: pré-visualização + resultado ===== -->
+          <div class="orc-lateral">
+
+            <!-- ===== Pré-visualização ===== -->
+            <div class="orc-bloco orc-bloco-previa cartao">
+              <h2 class="orc-titulo-bloco">Pré-visualização</h2>
+              <figure class="previa" id="previa">
+                <div class="previa-desenho" id="previa-desenho"></div>
+                <figcaption class="ajuda" id="previa-legenda">Desenho fora de escala real, só para conferir o formato.</figcaption>
+              </figure>
+            </div>
+
+            <!-- ===== Resultado ===== -->
+            <aside class="orc-bloco orc-bloco-resultado cartao cartao-destaque" id="painel-resultado" aria-labelledby="titulo-resultado">
+              <div class="orc-resultado-topo">
+                <h2 class="orc-titulo-bloco" id="titulo-resultado" tabindex="-1">Seu orçamento</h2>
+                <span class="selo selo-ficticio">Valores simulados</span>
+              </div>
+
+              <div id="resultado-erro"></div>
+
+              <div class="orc-resumo" id="resultado-resumo">
+                <p class="orc-total-rotulo">Total do pedido</p>
+                <p class="orc-total" id="resultado-total">—</p>
+                <dl class="orc-numeros">
+                  <div>
+                    <dt>Preço por peça</dt>
+                    <dd id="resultado-por-peca">—</dd>
+                  </div>
+                  <div>
+                    <dt>Prazo de fabricação</dt>
+                    <dd id="resultado-prazo">—</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <!-- Leitores de tela ouvem o novo total quando o usuário para de digitar -->
+              <p class="visualmente-oculto" id="anuncio-total" aria-live="polite" aria-atomic="true"></p>
+
+              <button type="button" class="botao botao-grande orc-botao-pedido" id="botao-pedido" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                <span id="botao-pedido-texto">Fazer pedido</span>
+              </button>
+              <p class="ajuda orc-nota-pedido">Simulação: nenhum pagamento é feito.</p>
+
+              <p class="orc-repasse" id="resultado-repasse"></p>
+
+              <details class="orc-detalhes" open>
+                <summary>Como chegamos nesse preço</summary>
+                <div class="tabela-rolagem">
+                  <table class="orc-tabela">
+                    <caption class="visualmente-oculto">Detalhamento do preço</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col" class="orc-col-valor">Valor</th>
+                      </tr>
+                    </thead>
+                    <tbody id="resultado-itens"></tbody>
+                    <tfoot>
+                      <tr>
+                        <th scope="row">Total</th>
+                        <td class="orc-col-valor" id="resultado-total-tabela">—</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </details>
+
+              <p class="ajuda orc-nota-simulada">Valores simulados para o Projeto Vitrine. A tabela de custos é fictícia, porém plausível.</p>
+            </aside>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra fixa com o total (só no celular). Aparece enquanto o painel
+         "Seu orçamento" está fora da tela, para o total ficar sempre à vista. -->
+    <div class="orc-barra-total" id="barra-total" hidden>
+      <div class="orc-barra-textos">
+        <span class="orc-barra-rotulo">Total <span class="orc-barra-simulado">(simulado)</span></span>
+        <strong class="orc-barra-valor" id="barra-total-valor">—</strong>
+        <span class="orc-barra-detalhe" id="barra-total-detalhe"></span>
+      </div>
+      <a class="botao orc-barra-botao" href="#titulo-resultado" id="barra-total-link">Ver orçamento</a>
+    </div>
+
+    <!-- Preenchidas pelo js/match.js depois que o cliente clica em "Fazer pedido" -->
+    <section id="secao-match" class="secao" hidden aria-labelledby="titulo-match"></section>
+    <section id="secao-pedido" class="secao" hidden aria-labelledby="titulo-pedido"></section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <p class="js-frase">Sua peça de metal sob medida, com preço na hora.</p>
+      <ul class="rodape-links">
+        <li><a href="orcamento.html">Fazer orçamento</a></li>
+        <li><a href="parceiro.html">Para metalúrgicas</a></li>
+        <li><a href="mercado.html">Tese do setor</a></li>
+        <li><a href="sobre.html">Sobre o projeto</a></li>
+      </ul>
+      <p class="rodape-aviso js-aviso">Startup fictícia criada para o Projeto Vitrine</p>
+      <p class="texto-suave" style="color:#c9ccd1">Preços, parceiras, pedidos e depoimentos são simulados. Nenhum dado é coletado e nenhum pagamento é real.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="data/precos.js"></script>
+  <script src="data/materiais.js"></script>
+  <script src="data/parceiros.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/calculo.js"></script>
+  <script src="js/pecas.js"></script>
+  <script src="js/dxf.js"></script>
+  <script src="js/match.js"></script>
+  <script src="js/orcamento.js"></script>
+</body>
+</html>

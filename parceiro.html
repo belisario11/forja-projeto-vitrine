@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forja · Para metalúrgicas</title>
+  <meta name="description" content="Painel simulado de uma metalúrgica parceira: receba pedidos com preço definido, aceite ou recuse e encha a agenda das máquinas sem gastar com vendas.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/parceiro.css">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Menu
+      </button>
+      <nav id="menu-principal" class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="parceiro.html" aria-current="page">Para metalúrgicas</a></li>
+          <li><a href="mercado.html">Mercado</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a class="menu-cta" href="orcamento.html">Fazer orçamento</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===== Faixa de abertura ===== -->
+    <section class="secao secao-escura painel-abertura" aria-labelledby="titulo-pagina">
+      <div class="container">
+        <p class="selo selo-ficticio">Painel simulado · dados fictícios</p>
+        <span class="sobrelinha">Para metalúrgicas parceiras</span>
+        <h1 id="titulo-pagina">Painel da metalúrgica</h1>
+        <p class="texto-grande">Encha sua agenda sem gastar com vendas.</p>
+
+        <!-- Nome da empresa, dono e cidade vêm de PAINEL_PARCEIRO (data/parceiros.js) -->
+        <div class="painel-empresa cartao">
+          <span class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 21V10l6 4V10l6 4V6l6 4v11z"/><path d="M3 21h18"/></svg>
+          </span>
+          <div>
+            <p class="painel-empresa-nome" id="painel-empresa">Metalúrgica parceira</p>
+            <p class="texto-suave">
+              Olá, <strong id="painel-dono">dono da metalúrgica</strong> ·
+              <span id="painel-cidade">Minas Gerais</span>
+            </p>
+          </div>
+        </div>
+
+        <h2 class="painel-subtitulo">Como funciona para você</h2>
+        <ol class="painel-passos">
+          <li>
+            <strong>O pedido chega com preço pronto.</strong>
+            O valor é definido pela tabela de custos combinada com as parceiras. Você não precisa fazer orçamento.
+          </li>
+          <li>
+            <strong>Você aceita ou recusa.</strong>
+            Se a máquina estiver livre, aceite. Se não, recuse e o pedido vai para outra parceira da rede.
+          </li>
+          <li>
+            <strong>Fabrique e receba.</strong>
+            A plataforma fica com <span data-dado="comissaoFaixa">15% a 20%</span> do pedido. O valor mostrado em cada oferta já é o que você recebe.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Máquinas cadastradas ===== -->
+    <section class="secao secao-clara" aria-labelledby="titulo-maquinas">
+      <div class="container">
+        <h2 id="titulo-maquinas">Máquinas cadastradas</h2>
+        <p class="texto-suave">As ofertas só chegam para os processos que a sua metalúrgica tem.</p>
+        <!-- Os cartões são criados pelo js/parceiro.js a partir de PAINEL_PARCEIRO.maquinas -->
+        <ul class="grade grade-3 lista-limpa" id="lista-maquinas"></ul>
+        <p class="ajuda maquinas-siglas">Siglas: <abbr title="Comando Numérico Computadorizado">CNC</abbr> (Comando Numérico Computadorizado: máquina controlada por computador) e <abbr title="Metal Inert Gas">MIG</abbr> (do inglês <span lang="en">Metal Inert Gas</span>, solda com proteção de gás).</p>
+      </div>
+    </section>
+
+    <!-- ===== Painel: ofertas + ocupação + ganhos ===== -->
+    <div class="secao">
+      <div class="container painel-grade">
+
+        <!-- Coluna 1: ofertas -->
+        <section class="painel-ofertas" aria-labelledby="titulo-ofertas">
+          <h2 id="titulo-ofertas" tabindex="-1">Ofertas chegando</h2>
+
+          <!-- Interruptor de disponibilidade (role="switch" + texto Ligado/Desligado) -->
+          <div class="disponibilidade cartao">
+            <span class="disponibilidade-rotulo" id="rotulo-disponivel">Disponível para novos serviços</span>
+            <button type="button" class="interruptor" id="botao-disponivel" role="switch" aria-checked="true" aria-labelledby="rotulo-disponivel">
+              <span class="interruptor-trilho" aria-hidden="true"><span class="interruptor-bolinha"></span></span>
+              <span class="interruptor-texto" id="texto-disponivel" aria-hidden="true">Ligado</span>
+            </button>
+          </div>
+
+          <!-- Mensagem quando o interruptor está desligado (anunciada por leitores de tela) -->
+          <div id="aviso-invisivel" role="status"></div>
+
+          <p class="texto-suave" id="explica-ofertas">Enquanto você estiver disponível, novas ofertas chegam de tempos em tempos. Cada oferta fica aberta por pouco tempo: se ninguém responder, ela vai para outra parceira.</p>
+
+          <!-- As ofertas entram aqui, uma de cada vez (aria-live anuncia cada novidade) -->
+          <ul class="lista-limpa lista-ofertas" id="lista-ofertas" aria-live="polite" aria-describedby="explica-ofertas"></ul>
+
+          <!-- Fim da demonstração -->
+          <div id="ofertas-fim-mensagem" role="status"></div>
+          <button type="button" class="botao botao-secundario" id="botao-reiniciar" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 3v6h6"/></svg>
+            Reiniciar demonstração
+          </button>
+        </section>
+
+        <!-- Coluna 2: ocupação e ganhos -->
+        <div class="painel-lateral">
+          <section class="cartao" aria-labelledby="titulo-ocupacao">
+            <h2 id="titulo-ocupacao" class="painel-titulo-menor">Ocupação da semana</h2>
+            <p class="texto-suave">Parte do horário em que as máquinas estão trabalhando. A parte listrada é tempo de máquina parada.</p>
+
+            <!-- Cada linha mostra o dia, a barra e o número em texto -->
+            <ul class="lista-limpa ocupacao-lista" id="ocupacao-lista"></ul>
+
+            <div class="ocupacao-media">
+              <p class="ocupacao-media-texto"><strong>Ocupação média: <span id="ocupacao-media">—</span></strong></p>
+              <div class="barra" aria-hidden="true"><div class="barra-preenchida" id="barra-media"></div></div>
+              <p class="tempo-livre">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                <span>Tempo livre: <strong id="tempo-livre">—</strong> da semana. Espaço para novos pedidos.</span>
+              </p>
+            </div>
+          </section>
+
+          <section class="cartao" aria-labelledby="titulo-ganhos">
+            <h2 id="titulo-ganhos" class="painel-titulo-menor">Ganhos do mês</h2>
+            <dl class="ganhos-grade">
+              <div class="ganho ganho-largo">
+                <dt>Valor recebido</dt>
+                <dd id="ganho-valor">—</dd>
+              </div>
+              <div class="ganho">
+                <dt>Pedidos concluídos</dt>
+                <dd id="ganho-pedidos">—</dd>
+              </div>
+              <div class="ganho">
+                <dt>Horas de máquina ocupadas</dt>
+                <dd id="ganho-horas">—</dd>
+              </div>
+              <div class="ganho ganho-largo">
+                <dt>Nota média dos clientes</dt>
+                <dd id="ganho-nota">—</dd>
+              </div>
+            </dl>
+            <p class="ajuda">Os números mudam quando você aceita uma oferta.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Futuro do produto ===== -->
+    <section class="secao secao-clara" aria-labelledby="titulo-futuro">
+      <div class="container">
+        <div class="cartao cartao-destaque painel-futuro">
+          <span class="icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/></svg>
+          </span>
+          <div>
+            <span class="sobrelinha">Futuro</span>
+            <h2 id="titulo-futuro">Painel de gestão por assinatura</h2>
+            <p>Hoje a metalúrgica paga só a comissão de cada pedido aceito. No futuro, a <span class="js-nome">Forja</span> quer oferecer uma versão completa deste painel por assinatura: agenda de todas as máquinas, controle dos pedidos de outros clientes e relatórios de ocupação.</p>
+            <p class="texto-suave">Ideia em estudo, ainda sem preço definido.</p>
+          </div>
+        </div>
+        <p class="grupo-botoes painel-chamada">
+          <a class="botao" href="index.html#como-funciona">Ver como funciona para o cliente</a>
+          <a class="botao botao-secundario" href="mercado.html">Por que metalúrgicas têm máquina parada</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <p class="js-frase">Sua peça de metal sob medida, com preço na hora.</p>
+      <ul class="rodape-links">
+        <li><a href="orcamento.html">Fazer orçamento</a></li>
+        <li><a href="parceiro.html">Para metalúrgicas</a></li>
+        <li><a href="mercado.html">Tese do setor</a></li>
+        <li><a href="sobre.html">Sobre o projeto</a></li>
+      </ul>
+      <p class="rodape-aviso js-aviso">Startup fictícia criada para o Projeto Vitrine</p>
+      <p class="texto-suave" style="color:#c9ccd1">Preços, parceiras, pedidos e depoimentos são simulados. Nenhum dado é coletado e nenhum pagamento é real.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="data/precos.js"></script>
+  <script src="data/materiais.js"></script>
+  <script src="data/parceiros.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/parceiro.js"></script>
+</body>
+</html>

@@ -1,0 +1,678 @@
+/* =============================================================
+   ESTILO BASE — usado por todas as páginas
+   Visual industrial: grafite + laranja-faísca sobre fundo claro.
+   Mobile first: o padrão é o celular; telas maiores usam @media.
+   Estilos específicos de uma página ficam em css/<pagina>.css.
+   ============================================================= */
+
+/* ---------- Cores e medidas (tokens) ----------
+   Contraste verificado para o nível AA da WCAG:
+   - texto #1c1f23 sobre #f7f6f3 ........ ~15:1
+   - texto-suave #4a5058 sobre #f7f6f3 .. ~7,6:1
+   - branco sobre laranja #b8420a ........ ~5,2:1 (botões)
+   - laranja-texto #a63c09 sobre branco .. ~6,1:1 (links e destaques)
+   - o laranja vivo #f26a1b é só decorativo (faíscas, bordas, ícones) */
+:root {
+  --cor-fundo: #f7f6f3;
+  --cor-superficie: #ffffff;
+  --cor-texto: #1c1f23;
+  --cor-texto-suave: #4a5058;
+  --cor-grafite: #23272c;
+  --cor-grafite-claro: #3a4048;
+  --cor-borda: #d4d2cc;
+  --cor-laranja: #b8420a;        /* botões e elementos com texto branco */
+  --cor-laranja-escuro: #94350a; /* hover dos botões */
+  --cor-laranja-texto: #a63c09;  /* links e textos em laranja */
+  --cor-faisca: #f26a1b;         /* decorativo */
+  --cor-laranja-fundo: #fdeee4;  /* fundo de destaques */
+  --cor-sucesso: #1d6b3a;
+  --cor-sucesso-fundo: #e5f3ea;
+  --cor-alerta: #8a4b00;
+  --cor-alerta-fundo: #fff4dc;
+  --cor-erro: #a1231b;
+  --cor-erro-fundo: #fbe9e7;
+
+  --fonte-titulo: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --fonte-texto: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+
+  --raio: 10px;
+  --raio-pequeno: 6px;
+  --sombra: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 14px rgba(0, 0, 0, 0.06);
+  --largura-max: 1120px;
+  --espaco: 1rem;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* respeita a configuração do navegador (16px padrão) */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 1.0625rem; /* ~17px */
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+/* O atributo "hidden" sempre esconde, mesmo em elementos com display próprio
+   (ex.: .botao usa display:inline-flex, que venceria o hidden do navegador) */
+[hidden] {
+  display: none !important;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+  letter-spacing: 0.01em;
+}
+
+h1 { font-size: clamp(2.4rem, 7vw, 4rem); font-weight: 800; }
+h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); font-weight: 700; }
+h3 { font-size: 1.45rem; font-weight: 700; }
+h4 { font-size: 1.2rem; font-weight: 700; }
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--cor-laranja-texto);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--cor-laranja-escuro);
+}
+
+/* Foco bem visível para quem navega pelo teclado */
+:focus-visible {
+  outline: 3px solid var(--cor-faisca);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Texto só para leitores de tela */
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link "Pular para o conteúdo" (aparece ao apertar Tab) */
+.pular-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--cor-grafite);
+  color: #fff;
+  border-radius: var(--raio-pequeno);
+}
+
+.pular-link:focus {
+  top: 1rem;
+  color: #fff;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 0 var(--espaco);
+}
+
+.secao {
+  padding: 3rem 0;
+}
+
+.secao-escura {
+  background: var(--cor-grafite);
+  color: #f1f1ef;
+}
+
+.secao-escura a {
+  color: #ffb37f; /* laranja claro com contraste AA sobre grafite */
+}
+
+.secao-escura .texto-suave {
+  color: #c9ccd1;
+}
+
+.secao-clara {
+  background: var(--cor-superficie);
+}
+
+/* "Sobrelinha": rótulo pequeno acima do título, como no PDF da escola */
+.sobrelinha {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cor-laranja-texto);
+  margin-bottom: 0.5rem;
+}
+
+.secao-escura .sobrelinha {
+  color: #ffb37f;
+}
+
+.texto-suave {
+  color: var(--cor-texto-suave);
+}
+
+.texto-grande {
+  font-size: 1.2rem;
+}
+
+.grade {
+  display: grid;
+  gap: 1.25rem;
+}
+
+/* Em telas maiores, a grade vira 2, 3 ou 4 colunas */
+@media (min-width: 640px) {
+  .grade-2,
+  .grade-3,
+  .grade-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .grade-3 { grid-template-columns: repeat(3, 1fr); }
+  .grade-4 { grid-template-columns: repeat(4, 1fr); }
+  .secao { padding: 4.5rem 0; }
+}
+
+/* ---------- Cabeçalho e menu ---------- */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--cor-grafite);
+  color: #fff;
+  border-bottom: 3px solid var(--cor-faisca);
+}
+
+.cabecalho .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.logo:hover {
+  color: #fff;
+}
+
+.logo svg {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.menu-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 0.8rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: transparent;
+  border: 2px solid #6b727b;
+  border-radius: var(--raio-pequeno);
+  cursor: pointer;
+}
+
+.menu-botao svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* No celular, o menu fica escondido até apertar o botão */
+.menu {
+  display: none;
+  width: 100%;
+  padding: 0.5rem 0 1rem;
+}
+
+.menu.aberto {
+  display: block;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu a {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  color: #f1f1ef;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: var(--raio-pequeno);
+}
+
+.menu a:hover {
+  background: var(--cor-grafite-claro);
+  color: #fff;
+}
+
+/* Página atual: marcada com sublinhado laranja + aria-current (não só cor) */
+.menu a[aria-current="page"] {
+  color: #fff;
+  box-shadow: inset 4px 0 0 var(--cor-faisca);
+  padding-left: 0.9rem;
+}
+
+.menu .menu-cta {
+  margin-top: 0.5rem;
+  background: var(--cor-laranja);
+  color: #fff;
+  text-align: center;
+}
+
+.menu .menu-cta:hover {
+  background: var(--cor-laranja-escuro);
+}
+
+/* No computador, o menu fica sempre visível na linha */
+@media (min-width: 900px) {
+  .menu-botao { display: none; }
+
+  .menu {
+    display: block;
+    width: auto;
+    padding: 0;
+  }
+
+  .menu ul {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .menu a {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .menu a[aria-current="page"] {
+    box-shadow: inset 0 -3px 0 var(--cor-faisca);
+    padding-left: 0.8rem;
+  }
+
+  .menu .menu-cta {
+    margin: 0 0 0 0.5rem;
+  }
+}
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.7rem 1.4rem;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  color: #fff;
+  background: var(--cor-laranja);
+  border: 2px solid var(--cor-laranja);
+  border-radius: var(--raio-pequeno);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.botao:hover {
+  color: #fff;
+  background: var(--cor-laranja-escuro);
+  border-color: var(--cor-laranja-escuro);
+}
+
+.botao svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Botão secundário: contorno grafite */
+.botao-secundario {
+  color: var(--cor-grafite);
+  background: transparent;
+  border-color: var(--cor-grafite);
+}
+
+.botao-secundario:hover {
+  color: #fff;
+  background: var(--cor-grafite);
+  border-color: var(--cor-grafite);
+}
+
+/* Botão claro, para usar sobre fundo grafite */
+.botao-claro {
+  color: var(--cor-grafite);
+  background: #fff;
+  border-color: #fff;
+}
+
+.botao-claro:hover {
+  color: var(--cor-grafite);
+  background: #e9e7e2;
+  border-color: #e9e7e2;
+}
+
+/* Dentro da seção escura, a regra ".secao-escura a" pintaria o texto dos
+   botões de laranja claro (contraste ruim). Aqui devolvemos a cor certa. */
+.secao-escura .botao {
+  color: #fff;
+}
+
+.secao-escura .botao-claro {
+  color: var(--cor-grafite);
+}
+
+.botao:disabled,
+.botao[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.botao-grande {
+  min-height: 56px;
+  padding: 0.9rem 1.8rem;
+  font-size: 1.15rem;
+}
+
+.grupo-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ---------- Cartões ---------- */
+.cartao {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+  box-shadow: var(--sombra);
+}
+
+.cartao > :last-child {
+  margin-bottom: 0;
+}
+
+.cartao-destaque {
+  border-top: 4px solid var(--cor-faisca);
+}
+
+.secao-escura .cartao {
+  background: var(--cor-grafite-claro);
+  border-color: #50575f;
+  color: #f1f1ef;
+  box-shadow: none;
+}
+
+/* Ícone redondo usado nos cartões */
+.icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0.75rem;
+  border-radius: 50%;
+  background: var(--cor-laranja-fundo);
+  color: var(--cor-laranja-texto);
+}
+
+.icone svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* ---------- Selos e avisos ---------- */
+.selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 999px;
+  background: var(--cor-alerta-fundo);
+  color: var(--cor-alerta);
+  border: 1px solid #e7c98a;
+}
+
+.selo-ficticio::before {
+  content: "⚠";
+  font-size: 0.9em;
+}
+
+.selo-sucesso {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+  border-color: #a9d3b6;
+}
+
+/* Caixa de aviso (info, sucesso, erro). O ícone/texto diz o tipo, não só a cor. */
+.aviso {
+  padding: 1rem 1.25rem;
+  border-radius: var(--raio-pequeno);
+  border-left: 5px solid var(--cor-alerta);
+  background: var(--cor-alerta-fundo);
+  color: var(--cor-texto);
+}
+
+.aviso-erro {
+  border-left-color: var(--cor-erro);
+  background: var(--cor-erro-fundo);
+}
+
+.aviso-sucesso {
+  border-left-color: var(--cor-sucesso);
+  background: var(--cor-sucesso-fundo);
+}
+
+.aviso > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Fonte de dados (sempre visível perto do número) ---------- */
+.fonte {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+}
+
+.secao-escura .fonte {
+  color: #c9ccd1;
+}
+
+/* Números grandes (indicadores) */
+.numero-grande {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.4rem, 7vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--cor-laranja-texto);
+}
+
+.secao-escura .numero-grande {
+  color: #ffb37f;
+}
+
+/* ---------- Tabelas ---------- */
+.tabela-rolagem {
+  overflow-x: auto; /* no celular, a tabela rola dentro da caixa */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--cor-superficie);
+  font-size: 0.98rem;
+}
+
+caption {
+  text-align: left;
+  font-weight: 700;
+  padding: 0 0 0.5rem;
+}
+
+th,
+td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--cor-borda);
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  background: var(--cor-grafite);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ---------- Formulários ---------- */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+label,
+legend {
+  font-weight: 600;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  color: var(--cor-texto);
+  background: #fff;
+  border: 2px solid #8a8f96; /* contraste 3:1 da borda (WCAG 1.4.11) */
+  border-radius: var(--raio-pequeno);
+}
+
+input:focus-visible,
+select:focus-visible {
+  border-color: var(--cor-grafite);
+}
+
+fieldset {
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  padding: 1rem;
+  margin: 0 0 1rem;
+}
+
+.ajuda {
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  background: var(--cor-grafite);
+  color: #d8dade;
+  padding: 2.5rem 0 1.5rem;
+  border-top: 3px solid var(--cor-faisca);
+}
+
+.rodape a {
+  color: #ffb37f;
+}
+
+.rodape .logo {
+  font-size: 1.5rem;
+}
+
+.rodape-links {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.rodape-aviso {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #50575f;
+  font-weight: 700;
+  color: #fff;
+}
+
+.rodape-aviso::before {
+  content: "⚠ ";
+  color: var(--cor-faisca);
+}
+
+/* ---------- Movimento reduzido ----------
+   Quem pediu ao sistema menos animação não vê animações. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

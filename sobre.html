@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forja · Sobre</title>
+  <meta name="description" content="Sobre o projeto: o que é o Projeto Vitrine, a equipe, o conceito da startup fictícia, as personas e a concorrência.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/sobre.css">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Menu
+      </button>
+      <nav id="menu-principal" class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="parceiro.html">Para metalúrgicas</a></li>
+          <li><a href="mercado.html">Mercado</a></li>
+          <li><a href="sobre.html" aria-current="page">Sobre</a></li>
+          <li><a class="menu-cta" href="orcamento.html">Fazer orçamento</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ============ 1. O QUE É O PROJETO VITRINE ============ -->
+    <section class="secao secao-escura sobre-topo" aria-labelledby="titulo-pagina">
+      <div class="container">
+        <span class="sobrelinha">Projeto Vitrine</span>
+        <h1 id="titulo-pagina">Sobre o projeto</h1>
+        <p class="texto-grande">
+          O Projeto Vitrine é um trabalho escolar em que cada grupo cria e simula uma startup.
+          Este site é a vitrine da nossa: a <span class="js-nome">Forja</span>, um marketplace
+          <abbr title="business to business: venda de empresa para empresa">B2B</abbr>
+          (venda de empresa para empresa) de peças de metal sob medida.
+        </p>
+
+        <div class="aviso sobre-aviso" role="note">
+          <p><strong>
+            <svg class="aviso-icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L22 20 H2 Z"/><path d="M12 10v4M12 17h.01"/></svg>
+            Tudo aqui é fictício.</strong></p>
+          <ul>
+            <li>Nenhum dado é coletado: nada do que você digita sai do seu navegador.</li>
+            <li>Nenhum pagamento é real: os preços são simulados.</li>
+            <li>As metalúrgicas parceiras, os pedidos, as personas e os depoimentos foram inventados.</li>
+          </ul>
+        </div>
+
+        <p class="texto-suave">
+          A estrutura da análise de mercado (página <a href="mercado.html">Mercado</a>) segue o
+          modelo de seções proposto pela escola, baseado no material da Escola do Sebrae.
+          Só a estrutura foi aproveitada; o tema e os dados são do nosso grupo.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 2. EQUIPE ============ -->
+    <section class="secao" aria-labelledby="titulo-equipe">
+      <div class="container">
+        <span class="sobrelinha">Quem fez</span>
+        <h2 id="titulo-equipe">Equipe</h2>
+        <p class="selo">Nomes em ordem alfabética — preencher</p>
+
+        <!--
+          COMO EDITAR A EQUIPE
+          - Cada <li class="cartao membro"> é uma pessoa do grupo.
+          - Troque "Nome Sobrenome" pelo nome real e "Função" pelo papel
+            (ex.: pesquisa de mercado, site, apresentação, finanças).
+          - Troque o "?" do círculo pelas iniciais (ex.: "AB").
+          - MANTENHA A ORDEM ALFABÉTICA pelo primeiro nome.
+          - Para adicionar alguém, copie um <li> inteiro; para remover, apague o <li>.
+          - Quando terminar, apague o aviso "Nomes em ordem alfabética — preencher".
+        -->
+        <ul class="grade grade-3 lista-equipe" role="list">
+          <li class="cartao membro">
+            <span class="avatar" aria-hidden="true">?</span>
+            <div>
+              <h3 class="membro-nome">Integrante 1 — Nome Sobrenome</h3>
+              <p class="texto-suave">Função</p>
+            </div>
+          </li>
+          <li class="cartao membro">
+            <span class="avatar" aria-hidden="true">?</span>
+            <div>
+              <h3 class="membro-nome">Integrante 2 — Nome Sobrenome</h3>
+              <p class="texto-suave">Função</p>
+            </div>
+          </li>
+          <li class="cartao membro">
+            <span class="avatar" aria-hidden="true">?</span>
+            <div>
+              <h3 class="membro-nome">Integrante 3 — Nome Sobrenome</h3>
+              <p class="texto-suave">Função</p>
+            </div>
+          </li>
+          <li class="cartao membro">
+            <span class="avatar" aria-hidden="true">?</span>
+            <div>
+              <h3 class="membro-nome">Integrante 4 — Nome Sobrenome</h3>
+              <p class="texto-suave">Função</p>
+            </div>
+          </li>
+          <li class="cartao membro">
+            <span class="avatar" aria-hidden="true">?</span>
+            <div>
+              <h3 class="membro-nome">Integrante 5 — Nome Sobrenome</h3>
+              <p class="texto-suave">Função</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 3. CONCEITO DA IDEIA ============ -->
+    <section class="secao secao-clara" aria-labelledby="titulo-conceito">
+      <div class="container">
+        <span class="sobrelinha">A ideia</span>
+        <h2 id="titulo-conceito">Conceito da ideia</h2>
+        <p class="texto-grande js-frase">Sua peça de metal sob medida, com preço na hora.</p>
+
+        <h3>O problema tem dois lados</h3>
+        <div class="grade grade-2">
+          <article class="cartao">
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </span>
+            <h4>Quem compra a peça</h4>
+            <p>
+              A empresa precisa de uma peça de metal sob medida (um suporte, uma chapa cortada,
+              uma peça de reposição). Manda o desenho para várias metalúrgicas, espera dias pelo
+              orçamento e muitas nem respondem. Enquanto isso, a máquina dela fica parada.
+            </p>
+          </article>
+          <article class="cartao">
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 21V10l6 4V10l6 4V6h6v15Z"/><path d="M3 21h18"/></svg>
+            </span>
+            <h4>Quem fabrica a peça</h4>
+            <p>
+              Metalúrgicas pequenas ficam com as máquinas ociosas boa parte do dia. Não têm
+              vendedor nem site e vivem de indicação.
+            </p>
+          </article>
+        </div>
+
+        <h3 class="sobre-subtitulo">A solução: “o Uber da fabricação”</h3>
+        <p>
+          Um marketplace B2B que liga as duas pontas. O cliente envia o desenho, recebe preço e
+          prazo na hora, paga, e o pedido vai para a metalúrgica parceira da região que tem a
+          máquina certa e está com capacidade livre. A plataforma não tem máquinas, assim como
+          o Uber não tem carros.
+        </p>
+
+        <!-- Diagrama do fluxo feito com lista ordenada + CSS.
+             Leitores de tela leem a lista normalmente, passo a passo.
+             role="list" garante que o Safari continue anunciando "lista"
+             mesmo com list-style: none no CSS. -->
+        <h4 id="titulo-fluxo">Como o pedido e o dinheiro andam</h4>
+        <ol class="fluxo" role="list" aria-labelledby="titulo-fluxo">
+          <li class="fluxo-passo">
+            <span class="fluxo-icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            </span>
+            <strong class="fluxo-titulo">Cliente</strong>
+            <span>Envia o desenho e paga.</span>
+            <span class="fluxo-dinheiro">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v12M15 9h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9"/></svg>
+              Dinheiro: o cliente paga o total.
+            </span>
+          </li>
+          <li class="fluxo-passo">
+            <span class="fluxo-icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3M7 9h4M7 13h10"/></svg>
+            </span>
+            <strong class="fluxo-titulo">Plataforma</strong>
+            <span>Calcula o preço e faz o match com a parceira certa.</span>
+            <span class="fluxo-dinheiro">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v12M15 9h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9"/></svg>
+              Dinheiro: a plataforma fica com a comissão
+              (<span data-dado="comissaoFaixa">15% a 20%</span>).
+            </span>
+          </li>
+          <li class="fluxo-passo">
+            <span class="fluxo-icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 21V10l6 4V10l6 4V6h6v15Z"/><path d="M3 21h18"/></svg>
+            </span>
+            <strong class="fluxo-titulo">Metalúrgica parceira</strong>
+            <span>Corta, dobra e solda a peça.</span>
+            <span class="fluxo-dinheiro">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v12M15 9h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9"/></svg>
+              Dinheiro: a metalúrgica recebe o restante.
+            </span>
+          </li>
+          <li class="fluxo-passo">
+            <span class="fluxo-icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 7l9-4 9 4v10l-9 4-9-4Z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>
+            </span>
+            <strong class="fluxo-titulo">Peça entregue</strong>
+            <span>A peça chega ao cliente.</span>
+          </li>
+        </ol>
+
+        <div class="grade grade-3 sobre-mecanica">
+          <article class="cartao cartao-destaque">
+            <h4>Como sai o preço</h4>
+            <p>
+              Uma tabela de custos combinada com as parceiras: material por kg, corte por metro
+              (conforme o material e a espessura), perfurações, dobras, preparação da máquina e
+              acabamento. Em cima disso entra a margem da plataforma. A metalúrgica não precisa
+              fazer orçamento.
+            </p>
+          </article>
+          <article class="cartao cartao-destaque">
+            <h4>Como funciona o match</h4>
+            <ol class="lista-passos">
+              <li>Filtra as parceiras que têm o processo, o material e a espessura do pedido.</li>
+              <li>Oferece o pedido a elas.</li>
+              <li>A primeira que aceitar leva.</li>
+              <li>Se ninguém aceitar, o valor oferecido sobe um pouco, como a tarifa dinâmica do Uber.</li>
+            </ol>
+          </article>
+          <article class="cartao cartao-destaque">
+            <h4>Como a plataforma ganha dinheiro</h4>
+            <p>
+              Comissão de <strong><span data-dado="comissaoFaixa">15% a 20%</span></strong> por pedido.
+            </p>
+            <p>
+              No futuro: um painel de gestão por assinatura para as metalúrgicas organizarem
+              agenda, máquinas e pedidos.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. PERSONAS ============ -->
+    <section class="secao" aria-labelledby="titulo-personas">
+      <div class="container">
+        <span class="sobrelinha">Para quem</span>
+        <h2 id="titulo-personas">Personas</h2>
+        <p>
+          <span class="selo selo-ficticio">Personas fictícias</span>
+        </p>
+        <p class="texto-suave">
+          Personas são personagens inventados que representam os clientes típicos.
+          Elas ajudam o grupo a decidir o que a plataforma precisa fazer.
+        </p>
+
+        <div class="grade grade-3">
+          <!-- Persona 1: comprador urgente -->
+          <article class="cartao persona" aria-labelledby="persona-rafael">
+            <div class="persona-topo">
+              <span class="avatar avatar-persona" aria-hidden="true">R</span>
+              <div>
+                <h3 id="persona-rafael">Rafael, 34 anos</h3>
+                <p class="texto-suave persona-papel">Engenheiro de manutenção numa indústria de alimentos em Contagem (MG)</p>
+              </div>
+            </div>
+            <dl class="persona-dados">
+              <dt>Dor</dt>
+              <dd>Precisa de peças urgentes de reposição e hoje espera dias por orçamento, com a linha de produção parada.</dd>
+              <dt>O que quer</dt>
+              <dd>Rapidez e previsibilidade: saber o preço e o prazo na hora.</dd>
+              <dt>Como a plataforma ajuda</dt>
+              <dd>Ele envia o desenho, vê preço e prazo na tela e o pedido já vai para uma parceira da região.</dd>
+            </dl>
+            <blockquote class="persona-fala">
+              <p>“Cada hora de máquina parada custa caro. Eu só queria saber quanto custa e quando chega.”</p>
+              <footer>(fala fictícia)</footer>
+            </blockquote>
+            <a class="botao botao-secundario" href="orcamento.html">Simular um orçamento como o Rafael</a>
+          </article>
+
+          <!-- Persona 2: fabricante com máquina ociosa -->
+          <article class="cartao persona" aria-labelledby="persona-antonio">
+            <div class="persona-topo">
+              <span class="avatar avatar-persona" aria-hidden="true">A</span>
+              <div>
+                <h3 id="persona-antonio">Seu Antônio, 58 anos</h3>
+                <p class="texto-suave persona-papel">Dono de uma metalúrgica com 12 funcionários na Grande BH (Belo Horizonte)</p>
+              </div>
+            </div>
+            <dl class="persona-dados">
+              <dt>Dor</dt>
+              <dd>O laser e a dobradeira ficam parados à tarde. Não tem vendedor nem site e depende de indicação.</dd>
+              <dt>O que quer</dt>
+              <dd>Encher a agenda das máquinas sem gastar com vendas.</dd>
+              <dt>Como a plataforma ajuda</dt>
+              <dd>Recebe pedidos já com preço definido, sem precisar orçar, e aceita só os que cabem na agenda.</dd>
+            </dl>
+            <blockquote class="persona-fala">
+              <p>“Máquina parada não paga funcionário. Se o pedido chegar pronto, eu faço.”</p>
+              <footer>(fala fictícia)</footer>
+            </blockquote>
+            <a class="botao botao-secundario" href="parceiro.html">Ver o painel da metalúrgica</a>
+          </article>
+
+          <!-- Persona 3: startup com muitos protótipos -->
+          <article class="cartao persona" aria-labelledby="persona-camila">
+            <div class="persona-topo">
+              <span class="avatar avatar-persona" aria-hidden="true">C</span>
+              <div>
+                <h3 id="persona-camila">Camila, 29 anos</h3>
+                <p class="texto-suave persona-papel">Sócia de uma startup de equipamentos agrícolas</p>
+              </div>
+            </div>
+            <dl class="persona-dados">
+              <dt>Dor</dt>
+              <dd>Encomenda cerca de 50 peças de protótipo por mês e não tem setor de compras para correr atrás de orçamentos.</dd>
+              <dt>O que quer</dt>
+              <dd>Pedir peças sem perder tempo com cotação, e testar novas versões rápido.</dd>
+              <dt>Como a plataforma ajuda</dt>
+              <dd>Um só lugar para enviar desenhos, comparar opções de material e acompanhar todos os pedidos.</dd>
+            </dl>
+            <blockquote class="persona-fala">
+              <p>“Eu quero projetar, não passar o dia mandando e-mail pedindo orçamento.”</p>
+              <footer>(fala fictícia)</footer>
+            </blockquote>
+            <a class="botao botao-secundario" href="orcamento.html">Simular um orçamento como a Camila</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. CONCORRÊNCIA E DIFERENCIAL ============ -->
+    <section class="secao secao-clara" aria-labelledby="titulo-concorrencia">
+      <div class="container">
+        <span class="sobrelinha">Mercado</span>
+        <h2 id="titulo-concorrencia">Concorrência e diferencial</h2>
+        <div class="grade grade-2">
+          <article class="cartao">
+            <h3>No Brasil: Mech4u</h3>
+            <p>
+              Plataforma de São José dos Campos (SP), em operação desde 2020, focada em usinagem
+              <abbr title="Comando Numérico Computadorizado">CNC</abbr> (Comando Numérico Computadorizado).
+            </p>
+            <span class="fonte">Referência de mercado. Fonte: site e materiais públicos da Mech4u.</span>
+          </article>
+          <article class="cartao cartao-destaque">
+            <h3>Nosso diferencial</h3>
+            <ul>
+              <li><strong>Foco em chapa metálica:</strong> corte, dobra e solda.</li>
+              <li><strong>Rede regional em Minas Gerais:</strong> parceiras perto do cliente, começando pela Grande BH.</li>
+              <li><strong>Preço na hora:</strong> a metalúrgica não precisa orçar.</li>
+            </ul>
+          </article>
+        </div>
+        <p class="sobre-referencias">
+          Referências internacionais do mesmo modelo: a Xometry, nos Estados Unidos, e a Fractory,
+          na Europa. Os números delas estão na página <a href="mercado.html">Mercado</a>, com as fontes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 6. CHAMADA FINAL ============ -->
+    <section class="secao secao-escura" aria-labelledby="titulo-cta">
+      <div class="container sobre-cta">
+        <h2 id="titulo-cta">Quer ver a ideia funcionando?</h2>
+        <p class="texto-suave">Faça um orçamento simulado ou veja os números do setor.</p>
+        <div class="grupo-botoes">
+          <a class="botao botao-grande" href="orcamento.html">Fazer orçamento</a>
+          <a class="botao botao-claro botao-grande" href="mercado.html">Ver a tese do setor</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <p class="js-frase">Sua peça de metal sob medida, com preço na hora.</p>
+      <ul class="rodape-links">
+        <li><a href="orcamento.html">Fazer orçamento</a></li>
+        <li><a href="parceiro.html">Para metalúrgicas</a></li>
+        <li><a href="mercado.html">Tese do setor</a></li>
+        <li><a href="sobre.html">Sobre o projeto</a></li>
+      </ul>
+      <p class="rodape-aviso js-aviso">Startup fictícia criada para o Projeto Vitrine</p>
+      <p class="texto-suave rodape-nota">Preços, parceiras, pedidos e depoimentos são simulados. Nenhum dado é coletado e nenhum pagamento é real.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="data/precos.js"></script>
+  <script src="data/materiais.js"></script>
+  <script src="data/parceiros.js"></script>
+  <script src="js/comum.js"></script>
+  <!-- Esta página não precisa de script próprio -->
+</body>
+</html>

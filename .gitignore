@@ -1,0 +1,23 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Node (caso alguém instale algo para testes)
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+
+# Configurações locais do Claude Code
+.claude/settings.local.json
+
+# Modelo da escola (material do Sebrae): fica só no computador,
+# não vai para o repositório público
+Ex Setor.pdf

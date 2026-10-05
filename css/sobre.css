@@ -1,0 +1,281 @@
+/* =============================================================
+   ESTILOS DA PÁGINA "SOBRE" (sobre.html)
+   Usa os tokens e componentes de css/estilo.css.
+   Mobile first: o padrão é o celular; telas maiores usam @media.
+   ============================================================= */
+
+/* ---------- 1. Topo: o que é o Projeto Vitrine ---------- */
+.sobre-topo .texto-grande {
+  max-width: 46rem;
+}
+
+.sobre-aviso {
+  max-width: 46rem;
+  margin: 1.5rem 0;
+}
+
+.sobre-aviso ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.aviso-icone {
+  width: 20px;
+  height: 20px;
+  vertical-align: -4px;
+  color: var(--cor-alerta);
+}
+
+/* ---------- 2. Equipe ---------- */
+/* A lista da equipe não mostra marcadores (bolinhas) */
+.lista-equipe {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.membro {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.membro-nome {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.membro p {
+  margin: 0;
+}
+
+/* min-width: 0 deixa o texto quebrar a linha dentro do flex,
+   assim um nome comprido não "estoura" a largura no celular */
+.membro > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Círculo com as iniciais (ou "?" enquanto não preencher) */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--cor-grafite);
+  color: #fff;
+  font-family: var(--fonte-titulo);
+  font-size: 1.6rem;
+  font-weight: 800;
+  border: 3px solid var(--cor-faisca);
+}
+
+/* ---------- 3. Conceito da ideia ---------- */
+.sobre-subtitulo {
+  margin-top: 2.5rem;
+}
+
+/* Diagrama do fluxo: no celular os passos ficam um embaixo do outro,
+   ligados por uma seta para baixo. */
+.fluxo {
+  list-style: none;
+  margin: 1rem 0 2.5rem;
+  padding: 0;
+  display: grid;
+  gap: 2.25rem; /* espaço para a seta entre os passos */
+}
+
+.fluxo-passo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.25rem;
+  background: var(--cor-fundo);
+  border: 2px solid var(--cor-grafite);
+  border-radius: var(--raio);
+}
+
+/* Seta entre um passo e o próximo (decorativa, feita só com CSS) */
+.fluxo-passo:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1.9rem;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 14px solid var(--cor-faisca);
+}
+
+.fluxo-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--cor-laranja-fundo);
+  color: var(--cor-laranja-texto);
+}
+
+.fluxo-icone svg {
+  width: 24px;
+  height: 24px;
+}
+
+.fluxo-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+}
+
+/* Etiqueta do dinheiro: ícone de moeda + texto (não depende só da cor) */
+.fluxo-dinheiro {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+  border-radius: var(--raio-pequeno);
+}
+
+.fluxo-dinheiro svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* No computador, os 4 passos ficam lado a lado com seta para a direita */
+@media (min-width: 900px) {
+  .fluxo {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.25rem;
+  }
+
+  .fluxo-passo:not(:last-child)::after {
+    left: auto;
+    right: -1.85rem;
+    top: 50%;
+    bottom: auto;
+    margin-left: 0;
+    margin-top: -10px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 14px solid var(--cor-faisca);
+    border-right: 0;
+  }
+}
+
+.sobre-mecanica h4 {
+  font-size: 1.35rem;
+}
+
+.lista-passos {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.lista-passos li {
+  margin-bottom: 0.4rem;
+}
+
+/* ---------- 4. Personas ---------- */
+.persona {
+  display: flex;
+  flex-direction: column;
+}
+
+.persona-topo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.persona-topo h3 {
+  margin-bottom: 0.2rem;
+}
+
+.persona-papel {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.avatar-persona {
+  width: 64px;
+  height: 64px;
+  font-size: 1.9rem;
+  background: var(--cor-laranja);
+  border-color: var(--cor-grafite);
+}
+
+.persona-dados {
+  margin: 0 0 1rem;
+}
+
+.persona-dados dt {
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-laranja-texto);
+  margin-top: 0.75rem;
+}
+
+.persona-dados dd {
+  margin: 0.15rem 0 0;
+}
+
+.persona-fala {
+  margin: 0 0 1.25rem;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--cor-faisca);
+  background: var(--cor-fundo);
+  border-radius: 0 var(--raio-pequeno) var(--raio-pequeno) 0;
+}
+
+.persona-fala p {
+  margin: 0 0 0.25rem;
+  font-style: italic;
+}
+
+.persona-fala footer {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+/* O botão vai para o fim do cartão, alinhando os três cartões */
+.persona .botao {
+  margin-top: auto;
+  text-align: center;
+}
+
+/* ---------- 5. Concorrência ---------- */
+.sobre-referencias {
+  margin-top: 1.5rem;
+}
+
+/* ---------- 6. Chamada final ---------- */
+.sobre-cta {
+  text-align: center;
+}
+
+.sobre-cta .grupo-botoes {
+  justify-content: center;
+}
+
+/* ---------- Rodapé ---------- */
+/* Substitui o style="color:#c9ccd1" do modelo da página */
+.rodape .rodape-nota {
+  color: #c9ccd1;
+}

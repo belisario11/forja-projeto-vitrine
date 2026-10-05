@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forja · Início</title>
+  <meta name="description" content="Marketplace B2B fictício de peças de metal sob medida: envie o desenho, receba preço e prazo na hora e uma metalúrgica parceira da região fabrica. Projeto Vitrine.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Menu
+      </button>
+      <nav id="menu-principal" class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html" aria-current="page">Início</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="parceiro.html">Para metalúrgicas</a></li>
+          <li><a href="mercado.html">Mercado</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a class="menu-cta" href="orcamento.html">Fazer orçamento</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===== 1. HERÓI: proposta de valor ===== -->
+    <section class="heroi" aria-labelledby="titulo-heroi">
+      <div class="container heroi-grade">
+        <div class="heroi-texto">
+          <p class="selo heroi-selo">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
+            Preço e prazo em segundos
+          </p>
+          <p class="sobrelinha"><span class="js-nome">Forja</span> · fabricação sob demanda</p>
+          <h1 id="titulo-heroi">Sua peça de metal sob medida, com preço na hora.</h1>
+          <p class="texto-grande texto-suave">
+            Um marketplace <abbr title="business to business: venda de empresa para empresa">B2B</abbr>
+            que liga quem precisa de peças de chapa metálica às metalúrgicas parceiras da região
+            com a máquina certa e tempo livre na agenda.
+          </p>
+          <div class="grupo-botoes">
+            <a class="botao botao-grande" href="orcamento.html">
+              Fazer orçamento
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="botao botao-secundario botao-grande" href="parceiro.html">Sou metalúrgica</a>
+          </div>
+        </div>
+
+        <!-- Ilustração decorativa: chapa sendo cortada a laser (a faísca pisca via CSS) -->
+        <div class="heroi-ilustracao">
+          <svg viewBox="0 0 320 260" aria-hidden="true" focusable="false">
+            <!-- chapa de fundo -->
+            <rect x="20" y="70" width="280" height="170" rx="6" fill="#e9e7e2" stroke="#23272c" stroke-width="3"/>
+            <!-- contorno da peça (já cortado: linha cheia) -->
+            <path d="M60 210 V110 H200" fill="none" stroke="#23272c" stroke-width="4" stroke-linejoin="round"/>
+            <!-- contorno ainda por cortar (tracejado) -->
+            <path d="M200 110 H250 V210 H60" fill="none" stroke="#23272c" stroke-width="3" stroke-dasharray="8 7" opacity="0.55"/>
+            <!-- furos da peça -->
+            <circle cx="95" cy="145" r="10" fill="none" stroke="#23272c" stroke-width="3"/>
+            <circle cx="95" cy="180" r="10" fill="none" stroke="#23272c" stroke-width="3"/>
+            <rect x="140" y="140" width="70" height="45" rx="4" fill="none" stroke="#23272c" stroke-width="3"/>
+            <!-- cabeçote do laser -->
+            <rect x="182" y="8" width="36" height="40" rx="4" fill="#23272c"/>
+            <rect x="192" y="48" width="16" height="12" fill="#3a4048"/>
+            <!-- feixe do laser -->
+            <line class="laser-feixe" x1="200" y1="60" x2="200" y2="108" stroke="#f26a1b" stroke-width="4" stroke-linecap="round"/>
+            <!-- faísca no ponto de corte -->
+            <g class="faisca">
+              <circle cx="200" cy="110" r="7" fill="#f26a1b"/>
+              <path d="M200 110 l-22 -14 M200 110 l24 -10 M200 110 l-18 16 M200 110 l20 18 M200 110 l-4 26" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. O PROBLEMA (dois lados) ===== -->
+    <section class="secao secao-clara" aria-labelledby="titulo-problema">
+      <div class="container">
+        <span class="sobrelinha">O problema</span>
+        <h2 id="titulo-problema">O problema tem dois lados</h2>
+        <div class="grade grade-2">
+          <article class="cartao cartao-destaque">
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </span>
+            <h3>Quem compra</h3>
+            <p>
+              A empresa precisa de uma peça de metal sob medida (um suporte, uma chapa cortada, uma peça de reposição).
+              Manda o desenho para várias metalúrgicas, espera dias por orçamento e muitas nem respondem.
+              Enquanto isso, a máquina dela fica parada.
+            </p>
+          </article>
+          <article class="cartao cartao-destaque">
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l6 4V10l6 4V6l6 4v11z"/><path d="M7 17h2M13 17h2"/></svg>
+            </span>
+            <h3>Quem fabrica</h3>
+            <p>
+              Metalúrgicas pequenas ficam com máquinas ociosas boa parte do dia.
+              Não têm vendedor nem site e vivem de indicação.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. COMO FUNCIONA (4 passos) ===== -->
+    <section class="secao" id="como-funciona" aria-labelledby="titulo-como">
+      <div class="container">
+        <span class="sobrelinha">A solução</span>
+        <h2 id="titulo-como">Como funciona em 4 passos</h2>
+        <ol class="passos" role="list">
+          <li class="passo cartao">
+            <span class="passo-numero" aria-hidden="true">1</span>
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M12 17v-6M9 14l3-3 3 3"/></svg>
+            </span>
+            <h3>Envie o desenho</h3>
+            <p>Escolha uma peça-modelo ou envie o seu arquivo <abbr title="Drawing Exchange Format: formato de desenho técnico">DXF</abbr>, com material, espessura e quantidade.</p>
+          </li>
+          <li class="passo cartao">
+            <span class="passo-numero" aria-hidden="true">2</span>
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+            </span>
+            <h3>Receba preço e prazo na hora</h3>
+            <p>O preço sai de uma tabela de custos combinada com as parceiras: ninguém precisa orçar à mão.</p>
+          </li>
+          <li class="passo cartao">
+            <span class="passo-numero" aria-hidden="true">3</span>
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><path d="M9 9.5l2 2 4-4"/></svg>
+            </span>
+            <h3>A metalúrgica livre mais próxima aceita</h3>
+            <p>O pedido é oferecido às parceiras da região com a máquina certa e capacidade livre; a primeira que aceitar leva.</p>
+          </li>
+          <li class="passo cartao">
+            <span class="passo-numero" aria-hidden="true">4</span>
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+            </span>
+            <h3>Receba a peça</h3>
+            <p>Você acompanha o pedido pela plataforma e recebe a peça pronta, no prazo combinado.</p>
+          </li>
+        </ol>
+        <p class="aviso uber-nota">
+          <strong>Como o Uber da fabricação:</strong> a plataforma não tem máquinas, assim como o Uber não tem carros.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== 4. PARA QUEM COMPRA ===== -->
+    <section class="secao secao-clara" aria-labelledby="titulo-comprador">
+      <div class="container">
+        <span class="sobrelinha">Para quem compra</span>
+        <h2 id="titulo-comprador">Peça urgente ou protótipo, sem esperar orçamento</h2>
+        <p class="texto-grande texto-suave">
+          Para o engenheiro de manutenção que precisa de uma peça de reposição antes que a linha pare,
+          e para a startup que encomenda dezenas de peças de protótipo por mês sem ter setor de compras.
+        </p>
+        <ul class="grade grade-4 lista-beneficios" role="list">
+          <li class="cartao">
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+            </span>
+            <h3>Preço na hora</h3>
+            <p>Envie o desenho e veja o valor em segundos, sem trocar dezenas de e-mails.</p>
+          </li>
+          <li class="cartao">
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>
+            </span>
+            <h3>Prazo previsível</h3>
+            <p>A data de entrega aparece junto com o preço, antes de você pagar.</p>
+          </li>
+          <li class="cartao">
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h6"/><path d="M16 16l4 4M20 16l-4 4"/></svg>
+            </span>
+            <h3>Sem cotar com 5 fornecedores</h3>
+            <p>Um único pedido substitui a rodada de cotações com várias metalúrgicas.</p>
+          </li>
+          <li class="cartao">
+            <span class="icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+            </span>
+            <h3>Qualidade com avaliações</h3>
+            <p>Cada parceira é avaliada pelos clientes a cada pedido entregue.</p>
+          </li>
+        </ul>
+        <div class="grupo-botoes">
+          <a class="botao" href="orcamento.html">Fazer orçamento</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. PARA METALÚRGICAS (seção escura) ===== -->
+    <section class="secao secao-escura" aria-labelledby="titulo-metalurgicas">
+      <div class="container">
+        <span class="sobrelinha">Para metalúrgicas</span>
+        <h2 id="titulo-metalurgicas">Encha sua agenda</h2>
+        <p class="texto-grande texto-suave">
+          Laser ou dobradeira parados à tarde? Transforme esse tempo ocioso em pedidos, sem gastar com vendas.
+        </p>
+        <ul class="grade grade-2 lista-beneficios" role="list">
+          <li class="cartao">
+            <h3>
+              <svg class="icone-titulo" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Pedidos prontos e já precificados
+            </h3>
+            <p>O desenho, o material e o preço já chegam definidos. Você não precisa fazer orçamento.</p>
+          </li>
+          <li class="cartao">
+            <h3>
+              <svg class="icone-titulo" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Você só aceita o que cabe na agenda
+            </h3>
+            <p>Os pedidos são oferecidos; aceitar é uma escolha sua, conforme a capacidade livre das máquinas.</p>
+          </li>
+          <li class="cartao">
+            <h3>
+              <svg class="icone-titulo" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Sem vendedor nem site
+            </h3>
+            <p>A plataforma traz os clientes até você, sem depender só de indicação.</p>
+          </li>
+          <li class="cartao">
+            <h3>
+              <svg class="icone-titulo" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Recebe pela plataforma
+            </h3>
+            <p>O cliente paga na hora do pedido, e o repasse vem pela plataforma, sem cobrança atrasada.</p>
+          </li>
+        </ul>
+        <p class="comissao-nota">
+          A plataforma fica com <strong><span data-dado="comissaoFaixa">15% a 20%</span></strong> de cada pedido; você não paga nada para entrar.
+        </p>
+        <div class="grupo-botoes">
+          <a class="botao botao-claro" href="parceiro.html">Ver o painel da metalúrgica</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. NÚMEROS DE MERCADO (sempre com fonte) ===== -->
+    <section class="secao" aria-labelledby="titulo-mercado">
+      <div class="container">
+        <span class="sobrelinha">Mercado</span>
+        <h2 id="titulo-mercado">Números de mercado</h2>
+        <p class="texto-suave">O modelo já funciona lá fora, e a indústria brasileira tem capacidade sobrando.</p>
+        <ul class="grade grade-3 lista-numeros" role="list">
+          <li class="cartao">
+            <span class="numero-grande">US$ 630 <abbr title="milhões">mi</abbr></span>
+            <p>Receita de marketplace da Xometry (Estados Unidos) em 2025, alta de 30% no ano.</p>
+            <span class="fonte">Fonte: Xometry, resultados financeiros de 2025.</span>
+          </li>
+          <li class="cartao">
+            <span class="numero-grande">2,5 <abbr title="milhões">mi</abbr>+</span>
+            <p>Peças entregues pela Fractory (Europa, fundada na Estônia em 2017) para mais de 24 mil clientes.</p>
+            <span class="fonte">Fonte: Fractory.</span>
+          </li>
+          <li class="cartao">
+            <span class="numero-grande">~50%</span>
+            <p>Capacidade média com que operam as metalúrgicas da rede da Fractory, segundo o fundador.</p>
+            <span class="fonte">Fonte: declarações do fundador da Fractory.</span>
+          </li>
+          <li class="cartao">
+            <span class="numero-grande">70%</span>
+            <p>
+              <abbr title="Utilização da Capacidade Instalada">UCI</abbr> da indústria brasileira, estável em julho de 2026.
+              Em agosto de 2026, a intenção de investimento caiu pela terceira vez seguida.
+            </p>
+            <span class="fonte">Fonte: CNI (Confederação Nacional da Indústria).</span>
+          </li>
+          <li class="cartao">
+            <span class="numero-grande">13,75% <abbr title="ao ano">a.a.</abbr></span>
+            <p>Selic (taxa básica de juros) desde 16 de setembro de 2026.</p>
+            <span class="fonte">Fonte: Banco Central / Copom (Comitê de Política Monetária).</span>
+            <p class="leitura texto-suave"><strong>Nossa leitura:</strong> com juros altos, comprar máquina nova fica caro; usar melhor a que já existe faz mais sentido.</p>
+          </li>
+          <li class="cartao">
+            <span class="numero-grande">10,1 <abbr title="milhões de toneladas">mi t</abbr></span>
+            <p>De aço bruto produzidas em Minas Gerais em 2025, cerca de 30% da produção nacional, liderando entre os estados.</p>
+            <span class="fonte">Fonte: Instituto Aço Brasil.</span>
+          </li>
+        </ul>
+        <p class="link-tese">
+          <a href="mercado.html">Ver a tese completa do setor</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== 7. DEPOIMENTOS (fictícios) ===== -->
+    <section class="secao secao-clara" aria-labelledby="titulo-depoimentos">
+      <div class="container">
+        <span class="sobrelinha">Depoimentos</span>
+        <h2 id="titulo-depoimentos">Quem usa, recomenda</h2>
+        <p class="aviso"><strong>Depoimentos fictícios, criados para a simulação.</strong> As pessoas abaixo são personas do projeto, não clientes reais.</p>
+        <div class="grade grade-3 depoimentos">
+          <figure class="cartao depoimento">
+            <span class="selo selo-ficticio">Depoimento fictício</span>
+            <blockquote>
+              <p>“Antes eu esperava dias por um orçamento enquanto a linha ficava parada. Agora vejo o preço e o prazo na hora e já aprovo o pedido.”</p>
+            </blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">R</span>
+              <span><strong>Rafael, 34</strong><br>Engenheiro de manutenção, indústria de alimentos em Contagem (MG)</span>
+            </figcaption>
+          </figure>
+          <figure class="cartao depoimento">
+            <span class="selo selo-ficticio">Depoimento fictício</span>
+            <blockquote>
+              <p>“O laser e a dobradeira ficavam parados à tarde. Hoje aceito os pedidos que cabem na agenda e não preciso de vendedor.”</p>
+            </blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">A</span>
+              <span><strong>Seu Antônio, 58</strong><br>Dono de metalúrgica com 12 funcionários na Grande BH</span>
+            </figcaption>
+          </figure>
+          <figure class="cartao depoimento">
+            <span class="selo selo-ficticio">Depoimento fictício</span>
+            <blockquote>
+              <p>“Encomendamos umas 50 peças de protótipo por mês. Sem setor de compras, ter tudo em um só lugar faz muita diferença.”</p>
+            </blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">C</span>
+              <span><strong>Camila, 29</strong><br>Sócia de startup de equipamentos agrícolas</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8. CHAMADA FINAL ===== -->
+    <section class="secao chamada-final" aria-labelledby="titulo-chamada">
+      <div class="container">
+        <h2 id="titulo-chamada">Tem um desenho aí? Veja o preço agora.</h2>
+        <div class="grupo-botoes">
+          <a class="botao botao-grande" href="orcamento.html">Fazer orçamento</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <p class="js-frase">Sua peça de metal sob medida, com preço na hora.</p>
+      <ul class="rodape-links">
+        <li><a href="orcamento.html">Fazer orçamento</a></li>
+        <li><a href="parceiro.html">Para metalúrgicas</a></li>
+        <li><a href="mercado.html">Tese do setor</a></li>
+        <li><a href="sobre.html">Sobre o projeto</a></li>
+      </ul>
+      <p class="rodape-aviso js-aviso">Startup fictícia criada para o Projeto Vitrine</p>
+      <p class="texto-suave" style="color:#c9ccd1">Preços, parceiras, pedidos e depoimentos são simulados. Nenhum dado é coletado e nenhum pagamento é real.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="data/precos.js"></script>
+  <script src="data/materiais.js"></script>
+  <script src="data/parceiros.js"></script>
+  <script src="js/comum.js"></script>
+</body>
+</html>

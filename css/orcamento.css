@@ -1,0 +1,779 @@
+/* =============================================================
+   PÁGINA DE ORÇAMENTO (orcamento.html)
+   Usa os tokens e componentes de css/estilo.css.
+   Mobile first: no celular tudo fica em uma coluna, nesta ordem:
+     peça/desenho → pré-visualização → opções → resultado
+   A partir de 960px: formulário à esquerda, pré-visualização e
+   resultado à direita (a coluna da direita acompanha a rolagem).
+   ============================================================= */
+
+.orc-secao {
+  padding-top: 2rem;
+}
+
+.orc-topo {
+  max-width: 760px;
+  margin-bottom: 1.5rem;
+}
+
+.orc-topo h1 {
+  margin-bottom: 0.3em;
+}
+
+/* O título recebe foco quando o usuário volta do pedido (sem contorno feio) */
+.orc-topo h1:focus {
+  outline: none;
+}
+
+.orc-topo h1:focus-visible {
+  outline: 3px solid var(--cor-faisca);
+}
+
+.orc-titulo-bloco {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Layout ---------- */
+.orc-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* No celular a "coluna lateral" some como caixa e seus filhos
+   entram direto na lista, para poder mudar a ordem com "order" */
+.orc-lateral {
+  display: contents;
+}
+
+.orc-bloco-peca { order: 1; }
+.orc-bloco-previa { order: 2; }
+.orc-bloco-opcoes { order: 3; }
+.orc-bloco-resultado { order: 4; }
+
+/* Cartões com um pouco menos de respiro no celular */
+.orc-bloco.cartao {
+  padding: 1.1rem;
+  min-width: 0; /* evita que conteúdo largo estoure a tela */
+}
+
+@media (min-width: 640px) {
+  .orc-bloco.cartao {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .orc-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    grid-template-rows: auto 1fr; /* sobra de altura vai para a 2ª linha, sem buraco entre os blocos */
+    grid-template-areas:
+      "peca lateral"
+      "opcoes lateral";
+    gap: 1.5rem;
+  }
+
+  /* O formulário fica do tamanho do conteúdo (não estica) */
+  .orc-bloco-peca,
+  .orc-bloco-opcoes {
+    align-self: start;
+  }
+
+  .orc-bloco-peca { grid-area: peca; }
+  .orc-bloco-opcoes { grid-area: opcoes; }
+
+  .orc-lateral {
+    grid-area: lateral;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    /* a coluna estica até o fim do formulário, para o resultado "grudar" */
+  }
+
+  /* O resultado acompanha a rolagem: total e botão ficam sempre à vista */
+  .orc-bloco-resultado {
+    position: sticky;
+    top: 84px; /* altura do cabeçalho fixo + folga */
+  }
+}
+
+/* ---------- Abas (peças-modelo / DXF) ---------- */
+.orc-abas {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid var(--cor-borda);
+}
+
+.orc-aba {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 52px;
+  padding: 0.5rem 0.6rem;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cor-texto-suave);
+  background: transparent;
+  border: 0;
+  border-bottom: 4px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.orc-aba svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.orc-aba:hover {
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+/* Aba ativa: texto escuro + barra laranja (não depende só da cor) */
+.orc-aba[aria-selected="true"] {
+  color: var(--cor-texto);
+  border-bottom-color: var(--cor-faisca);
+}
+
+.orc-aba abbr {
+  text-decoration: none;
+}
+
+/* ---------- Cartões das peças-modelo ---------- */
+.orc-pecas,
+.orc-medidas,
+.orc-opcoes-radio {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  min-width: 0;
+}
+
+.orc-pecas legend,
+.orc-medidas legend,
+.orc-opcoes-radio legend {
+  padding: 0;
+  margin-bottom: 0.6rem;
+}
+
+.orc-lista-pecas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .orc-lista-pecas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .orc-lista-pecas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .orc-lista-pecas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.cartao-peca {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  padding: 0.8rem 0.8rem 0.9rem;
+  background: var(--cor-superficie);
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.cartao-peca:hover {
+  border-color: #8a8f96;
+}
+
+/* O rádio continua visível no canto: mostra a escolha sem depender da cor */
+.cartao-peca input {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--cor-laranja);
+}
+
+.cartao-peca:focus-within {
+  outline: 3px solid var(--cor-faisca);
+  outline-offset: 2px;
+}
+
+.cartao-peca .icone {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0.25rem;
+}
+
+.cartao-peca-nome {
+  font-weight: 700;
+  padding-right: 1.4rem;
+}
+
+.cartao-peca-descricao {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+/* Peça escolhida: borda grafite grossa + fundo laranja claro */
+.cartao-peca.selecionada {
+  border-color: var(--cor-grafite);
+  background: var(--cor-laranja-fundo);
+  box-shadow: inset 0 0 0 1px var(--cor-grafite);
+}
+
+/* ---------- Campos de medidas e opções ---------- */
+.orc-campos-medidas,
+.orc-campos-duplos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 1rem;
+}
+
+@media (min-width: 520px) {
+  .orc-campos-medidas,
+  .orc-campos-duplos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.orc-campos-medidas .campo[hidden] {
+  display: none;
+}
+
+.orc-avisos-medidas:empty {
+  display: none;
+}
+
+.orc-avisos-medidas ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+/* Rádios em lista (acabamento e prazo) */
+.orc-lista-radio {
+  display: grid;
+  gap: 0.5rem;
+}
+
+@media (min-width: 520px) {
+  .orc-lista-radio {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+}
+
+.orc-radio {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.7rem 0.8rem;
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-superficie);
+  font-weight: 400;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.orc-radio input {
+  width: 20px;
+  height: 20px;
+  margin: 0.1rem 0 0;
+  flex-shrink: 0;
+  accent-color: var(--cor-laranja);
+}
+
+.orc-radio > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.orc-radio:focus-within {
+  outline: 3px solid var(--cor-faisca);
+  outline-offset: 2px;
+}
+
+.orc-radio.selecionada {
+  border-color: var(--cor-grafite);
+  background: var(--cor-laranja-fundo);
+}
+
+/* Opção indisponível: fica apagada E tem o texto explicando o motivo */
+.orc-radio.indisponivel {
+  cursor: not-allowed;
+  background: var(--cor-fundo);
+  border-style: dashed;
+}
+
+.orc-radio.indisponivel strong {
+  color: var(--cor-texto-suave);
+}
+
+.orc-anuncio-opcoes:empty {
+  display: none;
+}
+
+.orc-anuncio-opcoes {
+  margin: 0;
+  font-weight: 600;
+  color: var(--cor-alerta);
+}
+
+/* ---------- Envio do DXF ---------- */
+.zona-arquivo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 170px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background: var(--cor-fundo);
+  border: 3px dashed #8a8f96;
+  border-radius: var(--raio);
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.zona-arquivo svg {
+  width: 40px;
+  height: 40px;
+  color: var(--cor-laranja-texto);
+}
+
+.zona-arquivo-titulo {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--cor-laranja-texto);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.zona-arquivo-texto {
+  color: var(--cor-texto-suave);
+}
+
+.zona-arquivo:hover {
+  border-color: var(--cor-grafite);
+}
+
+/* O input fica escondido visualmente, então o foco aparece na zona inteira */
+.zona-arquivo:focus-within {
+  outline: 3px solid var(--cor-faisca);
+  outline-offset: 3px;
+  border-color: var(--cor-grafite);
+}
+
+/* Arquivo sendo arrastado por cima */
+.zona-arquivo.arrastando {
+  border-color: var(--cor-laranja);
+  border-style: solid;
+  background: var(--cor-laranja-fundo);
+}
+
+.orc-privacidade {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 1rem 0 0.25rem;
+  font-weight: 600;
+}
+
+.orc-privacidade svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--cor-sucesso);
+}
+
+.orc-dxf-estado:empty {
+  display: none;
+}
+
+.orc-dxf-estado,
+#dxf-erro .aviso,
+.orc-dxf-resultado {
+  margin-top: 1rem;
+}
+
+/* "Lendo o desenho…" com um pequeno indicador girando */
+.orc-carregando {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+}
+
+.orc-carregando::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--cor-borda);
+  border-top-color: var(--cor-laranja);
+  border-radius: 50%;
+  animation: orc-girar 0.8s linear infinite;
+}
+
+@keyframes orc-girar {
+  to { transform: rotate(360deg); }
+}
+
+.orc-dxf-resultado h3 {
+  font-size: 1.25rem;
+}
+
+.orc-dados-dxf {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.4rem 1rem;
+  margin: 0 0 1rem;
+}
+
+@media (min-width: 520px) {
+  .orc-dados-dxf {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.orc-dados-dxf div {
+  padding: 0.5rem 0.75rem;
+  background: var(--cor-fundo);
+  border-radius: var(--raio-pequeno);
+}
+
+.orc-dados-dxf dt {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+.orc-dados-dxf dd {
+  margin: 0;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.orc-dxf-avisos {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+/* ---------- Pré-visualização ---------- */
+.previa {
+  margin: 0;
+}
+
+.previa-desenho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 0.5rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  /* fundo quadriculado leve, como papel milimetrado */
+  background-image:
+    linear-gradient(#eeece7 1px, transparent 1px),
+    linear-gradient(90deg, #eeece7 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: var(--cor-grafite); /* usado pelo SVG do DXF (currentColor) */
+}
+
+.previa-desenho svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+}
+
+.previa-vazia {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+.previa figcaption {
+  margin-top: 0.5rem;
+}
+
+/* Partes do desenho das peças-modelo (classes usadas em js/pecas.js) */
+.peca-chapa {
+  fill: var(--cor-grafite-claro);
+  stroke: var(--cor-grafite);
+  stroke-width: 2;
+}
+
+.peca-furo {
+  fill: #ffffff;
+  stroke: var(--cor-grafite);
+  stroke-width: 1;
+}
+
+.peca-guia {
+  fill: none;
+  stroke: #8a8f96;
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.peca-dobra {
+  stroke: var(--cor-faisca);
+  stroke-width: 2.5;
+  stroke-dasharray: 8 5;
+}
+
+.peca-dobra-texto {
+  fill: var(--cor-laranja-texto);
+  font: 700 14px var(--fonte-texto);
+}
+
+.peca-cota line {
+  stroke: var(--cor-texto-suave);
+  stroke-width: 1.2;
+}
+
+.peca-cota text {
+  fill: var(--cor-texto);
+  font: 600 15px var(--fonte-texto);
+}
+
+/* ---------- Resultado ---------- */
+.orc-resultado-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.orc-resultado-topo .orc-titulo-bloco {
+  margin: 0;
+}
+
+.orc-total-rotulo {
+  margin: 0.5rem 0 0;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+.orc-total {
+  margin: 0 0 0.75rem;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.6rem, 9vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--cor-laranja-texto);
+  overflow-wrap: anywhere;
+}
+
+.orc-numeros {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
+}
+
+.orc-numeros div {
+  padding: 0.6rem 0.75rem;
+  background: var(--cor-fundo);
+  border-radius: var(--raio-pequeno);
+}
+
+.orc-numeros dt {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+.orc-numeros dd {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* Sem resultado válido: os números ficam apagados */
+.orc-resumo.sem-resultado .orc-total,
+.orc-resumo.sem-resultado dd {
+  color: var(--cor-texto-suave);
+}
+
+.orc-botao-pedido {
+  width: 100%;
+}
+
+.orc-nota-pedido {
+  margin: 0.5rem 0 1rem;
+  text-align: center;
+}
+
+.orc-repasse {
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.92rem;
+  background: var(--cor-fundo);
+  border-left: 4px solid var(--cor-faisca);
+  border-radius: var(--raio-pequeno);
+}
+
+.orc-repasse:empty {
+  display: none;
+}
+
+.orc-detalhes summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.4rem 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.orc-tabela {
+  font-size: 0.92rem;
+}
+
+.orc-tabela th,
+.orc-tabela td {
+  padding: 0.55rem 0.5rem;
+}
+
+.orc-tabela tbody th {
+  font-weight: 600;
+}
+
+.orc-item-detalhe {
+  display: block;
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--cor-texto-suave);
+}
+
+.orc-col-valor {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.orc-tabela tfoot th,
+.orc-tabela tfoot td {
+  font-weight: 700;
+  border-bottom: 0;
+  border-top: 2px solid var(--cor-grafite);
+}
+
+/* Linha da margem da plataforma: destacada com fundo e rótulo */
+.orc-linha-margem th,
+.orc-linha-margem td {
+  background: var(--cor-laranja-fundo);
+}
+
+.orc-nota-simulada {
+  margin: 1rem 0 0;
+}
+
+#resultado-erro .aviso {
+  margin-bottom: 1rem;
+}
+
+/* Botão "Usar peças-modelo" dentro do aviso de erro */
+.aviso .botao {
+  margin-top: 0.5rem;
+}
+
+/* Ao voltar do pedido, a rolagem para aqui sem esconder o título sob o cabeçalho fixo */
+#secao-orcamento {
+  scroll-margin-top: 70px;
+}
+
+/* ---------- Barra fixa do total (só no celular) ----------
+   Fica presa no rodapé da tela enquanto o painel "Seu orçamento"
+   está fora de vista. O JavaScript liga e desliga o atributo hidden. */
+.orc-barra-total {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40; /* abaixo do cabeçalho (50) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem var(--espaco);
+  padding-bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px)); /* iPhone com barra de gestos */
+  background: var(--cor-grafite);
+  color: #fff;
+  border-top: 3px solid var(--cor-faisca);
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.orc-barra-textos {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* deixa o texto quebrar em vez de empurrar o botão */
+  line-height: 1.25;
+}
+
+.orc-barra-rotulo,
+.orc-barra-detalhe {
+  font-size: 0.85rem;
+  color: #c9ccd1; /* contraste AA sobre o grafite */
+}
+
+.orc-barra-valor {
+  font-family: var(--fonte-titulo);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffb37f; /* laranja claro com contraste AA sobre o grafite */
+}
+
+.orc-barra-botao {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+}
+
+/* Espaço no fim da página para a barra não cobrir o rodapé */
+body.com-barra-total {
+  padding-bottom: 92px;
+}
+
+/* Ao pular para o painel, o título não fica escondido atrás do cabeçalho */
+#titulo-resultado {
+  scroll-margin-top: 84px;
+}
+
+/* No computador o painel já acompanha a rolagem: a barra não é necessária */
+@media (min-width: 960px) {
+  .orc-barra-total {
+    display: none;
+  }
+
+  body.com-barra-total {
+    padding-bottom: 0;
+  }
+}

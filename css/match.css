@@ -1,0 +1,417 @@
+/* =============================================================
+   MATCH + PEDIDO (orcamento.html)
+   Estilos das seções #secao-match e #secao-pedido, montadas por js/match.js.
+   Usa só as cores (tokens) de css/estilo.css. Mobile first.
+   ============================================================= */
+
+#secao-match {
+  background: var(--cor-superficie);
+  border-top: 1px solid var(--cor-borda);
+}
+
+#secao-pedido {
+  border-top: 1px solid var(--cor-borda);
+}
+
+/* O cabeçalho fica grudado no topo (sticky). Esta margem faz a rolagem
+   automática parar um pouco antes, para o título não ficar escondido. */
+#secao-match,
+#secao-pedido {
+  scroll-margin-top: 4.5rem;
+}
+
+/* Títulos que recebem foco pelo JavaScript não precisam de contorno grosso */
+#titulo-match:focus,
+#titulo-pedido:focus {
+  outline: none;
+}
+
+#titulo-match:focus-visible,
+#titulo-pedido:focus-visible {
+  outline: 3px solid var(--cor-faisca);
+}
+
+.match-aviso {
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Topo: busca + resumo ---------- */
+.match-topo {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 800px) {
+  .match-topo {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.match-busca {
+  text-align: center;
+}
+
+.match-status {
+  font-weight: 600;
+  min-height: 3.2em; /* evita que a tela "pule" quando o texto muda */
+}
+
+.match-valor-linha {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.match-valor-linha strong {
+  color: var(--cor-laranja-texto);
+  font-size: 1.3rem;
+}
+
+/* ---------- Radar animado (decorativo) ---------- */
+.match-radar {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1rem;
+  color: var(--cor-grafite-claro);
+}
+
+.match-radar svg {
+  width: 100%;
+  height: 100%;
+}
+
+.match-radar-ponto {
+  fill: var(--cor-faisca);
+}
+
+/* Ondas que crescem e somem, como um radar */
+.match-radar-onda {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 20%;
+  height: 20%;
+  border: 3px solid var(--cor-faisca);
+  border-radius: 50%;
+  opacity: 0;
+  animation: match-pulso 2s ease-out infinite;
+}
+
+.match-radar-onda-2 {
+  animation-delay: 1s;
+}
+
+@keyframes match-pulso {
+  0%   { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(5); opacity: 0; }
+}
+
+/* Radar parado (depois do aceite ou sem parceiras) */
+.match-radar.parado .match-radar-onda {
+  animation: none;
+  opacity: 0;
+}
+
+/* Contagem regressiva */
+.match-contagem {
+  margin-top: 1rem;
+}
+
+.match-contagem-texto {
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.match-contagem progress {
+  width: 100%;
+  height: 14px;
+  accent-color: var(--cor-laranja);
+}
+
+/* ---------- Resumo (lista de definições) ---------- */
+.match-dados {
+  margin: 0;
+}
+
+.match-dados > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.match-dados dt {
+  color: var(--cor-texto-suave);
+}
+
+.match-dados dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+  overflow-wrap: anywhere; /* nomes longos de arquivo não estouram a tela */
+}
+
+/* ---------- Cartões das parceiras ---------- */
+.match-lista {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .match-lista { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .match-lista { grid-template-columns: repeat(3, 1fr); }
+}
+
+.match-parceira {
+  padding: 1.25rem;
+  animation: match-entrar 0.35s ease-out;
+}
+
+@keyframes match-entrar {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.match-parceira p {
+  margin: 0 0 0.35rem;
+}
+
+.match-parceira-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.match-parceira-topo h4 {
+  margin: 0;
+}
+
+.match-parceira-local {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.match-parceira-local svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--cor-laranja-texto);
+}
+
+.match-estrela {
+  color: var(--cor-alerta);
+}
+
+/* ---------- Selos de status (texto + cor; nunca só a cor) ---------- */
+.match-chip {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid var(--cor-borda);
+  white-space: nowrap;
+}
+
+.chip-enviada {
+  background: var(--cor-fundo);
+  color: var(--cor-texto-suave);
+}
+
+.chip-analisando {
+  background: var(--cor-alerta-fundo);
+  color: var(--cor-alerta);
+  border-color: #e7c98a;
+}
+
+.chip-aceitou {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+  border-color: #a9d3b6;
+}
+
+.chip-encerrada {
+  background: var(--cor-fundo);
+  color: var(--cor-texto-suave);
+  text-decoration: line-through;
+}
+
+/* Cartão da parceira que aceitou ganha borda verde */
+.match-parceira:has(.chip-aceitou) {
+  border: 2px solid var(--cor-sucesso);
+}
+
+/* ---------- Descartadas e mensagem sem parceira ---------- */
+.match-descartadas {
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  padding: 0.75rem 1rem;
+  background: var(--cor-fundo);
+}
+
+.match-descartadas summary {
+  cursor: pointer;
+  font-weight: 600;
+  /* área de toque com ~44px de altura no celular (sem mudar o "display",
+     para não sumir a setinha de abrir/fechar) */
+  padding: 0.55rem 0;
+}
+
+.match-descartadas ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.match-descartadas li {
+  margin-bottom: 0.4rem;
+}
+
+.match-sem-parceira {
+  margin-bottom: 1.25rem;
+}
+
+.match-sem-parceira p::before {
+  content: "✕ ";
+  font-weight: 700;
+  color: var(--cor-erro);
+}
+
+/* ---------- Pedido confirmado ---------- */
+.pedido-grade {
+  align-items: start;
+}
+
+.pedido-fim {
+  margin-bottom: 1rem;
+}
+
+.pedido-fim p::before {
+  content: "✓ ";
+  font-weight: 700;
+  color: var(--cor-sucesso);
+}
+
+/* ---------- Linha do tempo vertical ---------- */
+.linha-tempo {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+}
+
+.etapa {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding-bottom: 1.1rem;
+}
+
+/* Linha vertical ligando as bolinhas */
+.etapa::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 36px;
+  bottom: 0;
+  width: 2px;
+  background: var(--cor-borda);
+}
+
+.etapa:last-child::before {
+  display: none;
+}
+
+.etapa-concluido::before {
+  background: var(--cor-sucesso);
+}
+
+.etapa-marcador {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--cor-borda);
+  background: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+}
+
+.etapa-marcador svg {
+  width: 20px;
+  height: 20px;
+}
+
+.etapa-texto {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.3rem;
+}
+
+.etapa-estado {
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+.etapa-concluido .etapa-marcador {
+  background: var(--cor-sucesso);
+  border-color: var(--cor-sucesso);
+  color: #fff;
+}
+
+.etapa-concluido .etapa-estado {
+  color: var(--cor-sucesso);
+}
+
+.etapa-andamento .etapa-marcador {
+  background: var(--cor-laranja);
+  border-color: var(--cor-laranja);
+  color: #fff;
+  box-shadow: 0 0 0 4px var(--cor-laranja-fundo);
+}
+
+.etapa-andamento .etapa-estado {
+  color: var(--cor-laranja-texto);
+  font-weight: 700;
+}
+
+.etapa-pulado .etapa-texto strong {
+  text-decoration: line-through;
+  color: var(--cor-texto-suave);
+}
+
+.etapa-pulado .etapa-marcador {
+  border-style: dashed;
+}
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .match-radar-onda,
+  .match-parceira {
+    animation: none;
+  }
+
+  /* Sem animação, mostra um anel parado para o radar não ficar vazio */
+  .match-radar-onda {
+    opacity: 0.5;
+    transform: scale(3);
+  }
+
+  .match-radar-onda-2 {
+    display: none;
+  }
+}

@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forja · Mercado</title>
+  <meta name="description" content="Tese de investimento do setor: capacidade ociosa de metalurgia como plataforma de crescimento, recorrência e coordenação. Dados de mercado com fontes e limitações da análise.">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/mercado.css">
+</head>
+<body>
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cabecalho">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Menu
+      </button>
+      <nav id="menu-principal" class="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#como-funciona">Como funciona</a></li>
+          <li><a href="parceiro.html">Para metalúrgicas</a></li>
+          <li><a href="mercado.html" aria-current="page">Mercado</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a class="menu-cta" href="orcamento.html">Fazer orçamento</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===== CAPA DA TESE (como a primeira página do PDF modelo) ===== -->
+    <section class="capa-tese secao-escura" aria-labelledby="titulo-pagina">
+      <div class="container">
+        <p class="sobrelinha">Tese de investimento · Brasil</p>
+        <h1 id="titulo-pagina">Mercado de fabricação sob demanda</h1>
+        <p class="capa-subtitulo">Capacidade ociosa de metalurgia como plataforma de crescimento, recorrência e coordenação</p>
+        <p class="capa-meta">
+          <span class="capa-data">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            <time datetime="2026-10">Outubro de 2026</time>
+          </span>
+          <span class="capa-nota">Elaborado pelo grupo para o Projeto Vitrine</span>
+        </p>
+        <p class="capa-aviso"><span class="selo selo-ficticio">Startup fictícia</span> Os dados de mercado vêm de fontes públicas citadas em cada número; a empresa, os preços e as parceiras do site são simulados.</p>
+      </div>
+    </section>
+
+    <div class="container tese-layout">
+
+      <!-- ===== SUMÁRIO: no celular fica no topo; no computador fica fixo ao lado ===== -->
+      <nav class="sumario" aria-labelledby="titulo-sumario">
+        <h2 id="titulo-sumario" class="sumario-titulo">Sumário</h2>
+        <ol>
+          <li><a href="#tese-executiva"><span class="sumario-num">01</span> Tese executiva</a></li>
+          <li><a href="#setor"><span class="sumario-num">02</span> Setor de atividade</a></li>
+          <li><a href="#crescimento"><span class="sumario-num">03</span> Crescimento</a></li>
+          <li><a href="#segmentacao"><span class="sumario-num">04</span> Segmentação</a></li>
+          <li><a href="#segmentos"><span class="sumario-num">05</span> Segmentos atraentes</a></li>
+          <li><a href="#tendencias"><span class="sumario-num">06</span> Principais tendências</a></li>
+          <li><a href="#dores"><span class="sumario-num">07</span> Dores de mercado</a></li>
+          <li><a href="#tese"><span class="sumario-num">08</span> Tese de investimento</a></li>
+          <li><a href="#riscos"><span class="sumario-num">09</span> Riscos e diligência</a></li>
+          <li><a href="#fontes"><span class="sumario-num">10</span> Fontes e limitações</a></li>
+          <li><a href="#conceito"><span class="sumario-num">11</span> Conceito e personas</a></li>
+        </ol>
+      </nav>
+
+      <div class="tese-conteudo">
+
+        <!-- ===== 01 TESE EXECUTIVA ===== -->
+        <section id="tese-executiva" class="tese-secao" aria-labelledby="t-01">
+          <p class="sobrelinha">Tese executiva</p>
+          <h2 id="t-01">A capacidade existe, falta coordenação</h2>
+          <p class="tese-subtitulo">O investimento mais defensável está na camada que coordena demanda fragmentada e capacidade ociosa.</p>
+          <p>Empresas que precisam de peças de metal sob medida esperam dias por um orçamento, enquanto metalúrgicas pequenas deixam máquinas paradas porque não têm vendedor nem site. Com juros altos, comprar máquina nova ficou caro, e usar melhor o parque que já existe virou a saída mais barata. Uma plataforma <abbr title="business to business, ou seja, venda de empresa para empresa">B2B</abbr> que ligue os dois lados não precisa ter máquinas, assim como o Uber não tem carros.</p>
+
+          <ul class="indicadores grade grade-3" role="list">
+            <li class="cartao indicador">
+              <span class="numero-grande">70%</span>
+              <p class="indicador-rotulo"><abbr title="Utilização da Capacidade Instalada">UCI</abbr> da indústria brasileira, estável em julho de 2026</p>
+              <p class="indicador-leitura">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Cerca de 30% da capacidade instalada está parada.
+              </p>
+              <span class="fonte">Fonte: <abbr title="Confederação Nacional da Indústria">CNI</abbr>, julho de 2026.</span>
+            </li>
+            <li class="cartao indicador">
+              <span class="numero-grande">~50%</span>
+              <p class="indicador-rotulo">Capacidade média usada pelas metalúrgicas da rede Fractory (Europa)</p>
+              <p class="indicador-leitura">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Metade do tempo de máquina fica sem pedido.
+              </p>
+              <span class="fonte">Fonte: declaração do fundador da Fractory.</span>
+            </li>
+            <li class="cartao indicador">
+              <span class="numero-grande">13,75% <small><abbr title="ao ano">a.a.</abbr></small></span>
+              <p class="indicador-rotulo">Selic (taxa básica de juros) desde 16 de setembro de 2026</p>
+              <p class="indicador-leitura">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Financiar máquina nova ficou caro.
+              </p>
+              <span class="fonte">Fonte: Banco Central do Brasil / <abbr title="Comitê de Política Monetária">Copom</abbr>.</span>
+            </li>
+          </ul>
+
+          <div class="implicacao">
+            <p class="implicacao-rotulo">Implicação</p>
+            <p class="implicacao-texto">Quem conectar pedidos pequenos e urgentes à capacidade livre captura recorrência sem ter máquinas.</p>
+          </div>
+
+          <p class="tese-rodape"><span>Fontes: CNI (UCI, jul/2026); Fractory (declaração do fundador); Banco Central / Copom (Selic). a.a. = ao ano.</span><span class="tese-pagina" aria-hidden="true">01</span></p>
+        </section>
+
+        <!-- ===== 02 SETOR DE ATIVIDADE ===== -->
+        <section id="setor" class="tese-secao" aria-labelledby="t-02">
+          <p class="sobrelinha">Setor de atividade</p>
+          <h2 id="t-02">Fabricação de produtos de metal (<abbr title="Classificação Nacional de Atividades Econômicas">CNAE</abbr> 25)</h2>
+          <p class="tese-subtitulo">O recorte vai do corte da chapa ao acabamento, servindo empresas que compram peças sob medida em pequenos lotes.</p>
+
+          <h3>Subsetores que a plataforma coordena</h3>
+          <ol class="subsetores" role="list">
+            <li class="subsetor">
+              <span class="subsetor-num" aria-hidden="true">01</span>
+              <div>
+                <h4>Corte</h4>
+                <p>Laser, plasma ou guilhotina em chapa de aço, inox ou alumínio. Ex.: flanges, tampas, gabaritos.</p>
+              </div>
+            </li>
+            <li class="subsetor">
+              <span class="subsetor-num" aria-hidden="true">02</span>
+              <div>
+                <h4>Dobra</h4>
+                <p>Dobradeira que transforma chapa plana em peça. Ex.: suportes em L, cantoneiras, caixas.</p>
+              </div>
+            </li>
+            <li class="subsetor">
+              <span class="subsetor-num" aria-hidden="true">03</span>
+              <div>
+                <h4>Solda</h4>
+                <p>Montagem de várias peças em uma. Ex.: bases de máquina, grades de proteção, carrinhos.</p>
+              </div>
+            </li>
+            <li class="subsetor">
+              <span class="subsetor-num" aria-hidden="true">04</span>
+              <div>
+                <h4>Usinagem</h4>
+                <p>Torno e fresa, inclusive <abbr title="Comando Numérico Computadorizado">CNC</abbr>. Ex.: eixos, buchas, engrenagens.</p>
+              </div>
+            </li>
+            <li class="subsetor">
+              <span class="subsetor-num" aria-hidden="true">05</span>
+              <div>
+                <h4>Acabamento</h4>
+                <p>Pintura, galvanização, jateamento. Ex.: peças que ficam expostas à umidade ou à vista.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="grade grade-2 setor-colunas">
+            <div class="cartao">
+              <h3>Lado comprador: quem compra</h3>
+              <ul class="lista-marcada">
+                <li>Manutenção industrial (peças de reposição)</li>
+                <li>Construção civil (suportes, chapas, grades)</li>
+                <li>Agronegócio (implementos e consertos)</li>
+                <li>Startups de hardware (protótipos e lotes pequenos)</li>
+              </ul>
+            </div>
+            <div class="cartao cartao-destaque">
+              <h3>Lente do investidor</h3>
+              <p class="lente">
+                <span>Recorrência</span>
+                <span aria-hidden="true">·</span>
+                <span>Confiança</span>
+                <span aria-hidden="true">·</span>
+                <span>Coordenação</span>
+                <span aria-hidden="true">·</span>
+                <span>Intensidade de capital</span>
+              </p>
+              <p class="texto-suave">O cliente volta a comprar? Confia na peça que chega? A plataforma organiza bem os dois lados? Quanto dinheiro é preciso para crescer?</p>
+            </div>
+          </div>
+
+          <p class="tese-rodape"><span>Recorte analítico próprio; subsetores exemplificativos.</span><span class="tese-pagina" aria-hidden="true">02</span></p>
+        </section>
+
+        <!-- ===== 03 CRESCIMENTO ===== -->
+        <section id="crescimento" class="tese-secao" aria-labelledby="t-03">
+          <p class="sobrelinha">Crescimento</p>
+          <h2 id="t-03">Modelos de plataforma já provaram escala lá fora</h2>
+          <p class="tese-subtitulo">Marketplaces de fabricação cresceram nos Estados Unidos e na Europa; Minas Gerais tem a base industrial para um modelo regional.</p>
+
+          <ul class="grade grade-3 estatisticas" role="list">
+            <li class="cartao cartao-destaque">
+              <p class="estatistica-nome">Xometry · Estados Unidos</p>
+              <span class="numero-grande">US$ 630 mi</span>
+              <p>de receita de marketplace em 2025, <strong>alta de 30%</strong> no ano.</p>
+              <span class="fonte">Fonte: Xometry, resultados financeiros de 2025.</span>
+            </li>
+            <li class="cartao cartao-destaque">
+              <p class="estatistica-nome">Fractory · Europa</p>
+              <span class="numero-grande">2,5 mi+</span>
+              <p>peças entregues para <strong>mais de 24 mil clientes</strong>. Fundada na Estônia em 2017.</p>
+              <span class="fonte">Fonte: Fractory.</span>
+            </li>
+            <li class="cartao cartao-destaque">
+              <p class="estatistica-nome">Minas Gerais · Brasil</p>
+              <span class="numero-grande">10,1 mi t</span>
+              <p>de aço bruto em 2025, <strong>cerca de 30% da produção nacional</strong>, líder entre os estados.</p>
+              <span class="fonte">Fonte: Instituto Aço Brasil.</span>
+            </li>
+          </ul>
+
+          <!-- Gráfico de barras simples. O valor de 2024 é calculado: 630 / 1,30 ≈ 485 -->
+          <figure class="grafico">
+            <figcaption>
+              <strong>Xometry: receita de marketplace (US$ milhões)</strong>
+              <span class="texto-suave">A barra de 2024 é uma estimativa nossa a partir da alta de 30% informada.</span>
+            </figcaption>
+            <svg class="grafico-svg" viewBox="0 0 360 270" role="img" aria-labelledby="grafico-titulo grafico-desc">
+              <title id="grafico-titulo">Receita de marketplace da Xometry, 2024 e 2025</title>
+              <desc id="grafico-desc">2024, estimado a partir da alta de 30%: cerca de 485 milhões de dólares. 2025: 630 milhões de dólares.</desc>
+              <defs>
+                <!-- Listras para mostrar, sem depender só da cor, que a barra é estimada -->
+                <pattern id="listras-estimado" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <rect width="8" height="8" fill="#fdeee4"/>
+                  <line x1="0" y1="0" x2="0" y2="8" stroke="#b8420a" stroke-width="3"/>
+                </pattern>
+              </defs>
+              <!-- linha de base (y = 200). A barra de 630 tem 150 de altura. -->
+              <line x1="10" y1="200" x2="350" y2="200" stroke="#4a5058" stroke-width="2"/>
+              <!-- 2024 estimado: altura proporcional (485 / 630 × 150 ≈ 115) -->
+              <rect x="40" y="85" width="110" height="115" fill="url(#listras-estimado)" stroke="#b8420a" stroke-width="2" stroke-dasharray="6 4"/>
+              <text x="95" y="73" text-anchor="middle" class="grafico-valor">≈ 485</text>
+              <text x="95" y="222" text-anchor="middle" class="grafico-eixo">2024</text>
+              <text x="95" y="242" text-anchor="middle" class="grafico-nota">(estimado a partir</text>
+              <text x="95" y="260" text-anchor="middle" class="grafico-nota">da alta de 30%)</text>
+              <!-- 2025 informado -->
+              <rect x="210" y="50" width="110" height="150" fill="#b8420a"/>
+              <text x="265" y="38" text-anchor="middle" class="grafico-valor">630</text>
+              <text x="265" y="222" text-anchor="middle" class="grafico-eixo">2025</text>
+              <text x="265" y="242" text-anchor="middle" class="grafico-nota">(informado)</text>
+            </svg>
+            <span class="fonte">Fonte: Xometry, resultados financeiros de 2025. Valor de 2024 = 630 ÷ 1,30 (cálculo do grupo).</span>
+          </figure>
+
+          <p class="tese-rodape"><span>Fontes: Xometry (resultados de 2025); Fractory; Instituto Aço Brasil. Números de empresas estrangeiras não se transferem direto ao Brasil.</span><span class="tese-pagina" aria-hidden="true">03</span></p>
+        </section>
+
+        <!-- ===== 04 SEGMENTAÇÃO ===== -->
+        <section id="segmentacao" class="tese-secao" aria-labelledby="t-04">
+          <p class="sobrelinha">Segmentação</p>
+          <h2 id="t-04">Urgência e recorrência segmentam melhor que tamanho</h2>
+          <p class="tese-subtitulo">Uma empresa pequena com máquina parada vale mais que uma grande que compra uma vez por ano.</p>
+
+          <!-- Matriz 2×2: cada quadrante diz em texto qual é a combinação (não depende da posição) -->
+          <div class="matriz-area">
+            <p class="matriz-eixo matriz-eixo-y" aria-hidden="true">Recorrência ↑</p>
+            <ul class="matriz" role="list" aria-label="Matriz de urgência e recorrência">
+              <li class="quadrante">
+                <p class="quadrante-tag">Urgência baixa · Recorrência alta</p>
+                <h3>Protótipos e P&amp;D</h3>
+                <p>Startups de hardware e áreas de <abbr title="Pesquisa e Desenvolvimento">P&amp;D</abbr> que pedem dezenas de peças por mês. Ex.: Camila, ~50 peças de protótipo por mês.</p>
+              </li>
+              <li class="quadrante quadrante-prioridade">
+                <p class="quadrante-tag">Urgência alta · Recorrência alta</p>
+                <h3>Manutenção recorrente</h3>
+                <p>Indústrias com várias linhas e paradas frequentes, que compram reposição toda semana.</p>
+                <p class="quadrante-selo">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+                  Alvo prioritário
+                </p>
+              </li>
+              <li class="quadrante">
+                <p class="quadrante-tag">Urgência baixa · Recorrência baixa</p>
+                <h3>Projetos pontuais</h3>
+                <p>Construção e obras com pedido único e prazo folgado. Ex.: grades e suportes de uma reforma.</p>
+              </li>
+              <li class="quadrante">
+                <p class="quadrante-tag">Urgência alta · Recorrência baixa</p>
+                <h3>Manutenção industrial emergencial</h3>
+                <p>Peça quebrou e a linha parou. Ex.: Rafael, em Contagem (MG), precisa da reposição em poucos dias.</p>
+              </li>
+            </ul>
+            <p class="matriz-eixo matriz-eixo-x" aria-hidden="true">Urgência →</p>
+          </div>
+
+          <h3 class="subtitulo-bloco">A segmentação deve separar usuário · decisor · pagador</h3>
+          <ul class="grade grade-3 papeis" role="list">
+            <li class="cartao">
+              <span class="icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+              </span>
+              <h4>Usuário</h4>
+              <p>O engenheiro que desenha a peça, envia o arquivo e precisa dela funcionando.</p>
+              <p><a href="sobre.html#titulo-personas">Conheça o Rafael e a Camila</a></p>
+            </li>
+            <li class="cartao">
+              <span class="icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>
+              </span>
+              <h4>Decisor</h4>
+              <p>O setor de compras, que aprova fornecedor e prazo. Em startups como a da Camila, não existe: o próprio sócio decide.</p>
+            </li>
+            <li class="cartao">
+              <span class="icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+              </span>
+              <h4>Pagador</h4>
+              <p>A empresa, que precisa de nota fiscal, previsibilidade de custo e prazo de pagamento.</p>
+            </li>
+          </ul>
+
+          <p class="tese-rodape"><span>Segmentação própria, baseada nas personas do projeto.</span><span class="tese-pagina" aria-hidden="true">04</span></p>
+        </section>
+
+        <!-- ===== 05 SEGMENTOS ATRAENTES ===== -->
+        <section id="segmentos" class="tese-secao" aria-labelledby="t-05">
+          <p class="sobrelinha">Segmentos atraentes</p>
+          <h2 id="t-05">Corte e dobra lideram a atratividade</h2>
+          <p class="tese-subtitulo">Ranking indicativo próprio: onde a dor é maior, o pedido se repete e o capital necessário é menor.</p>
+
+          <div class="tabela-rolagem" tabindex="0" role="region" aria-labelledby="cap-segmentos">
+            <table class="tabela-tese">
+              <caption id="cap-segmentos">Ranking indicativo de segmentos (nota de 1 a 5)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Segmento</th>
+                  <th scope="col">Nota</th>
+                  <th scope="col">Tese</th>
+                  <th scope="col">Risco</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Corte e dobra de chapa</th>
+                  <td><span class="nota">5/5</span><span class="pips" aria-hidden="true"><i class="cheio"></i><i class="cheio"></i><i class="cheio"></i><i class="cheio"></i><i class="cheio"></i></span></td>
+                  <td>Preço calculável pelo desenho, muitas oficinas pequenas com máquina livre e pedidos frequentes.</td>
+                  <td>Margem apertada em peças simples; concorrência por preço.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Manutenção industrial (reposição)</th>
+                  <td><span class="nota">4/5</span><span class="pips" aria-hidden="true"><i class="cheio"></i><i class="cheio"></i><i class="cheio"></i><i class="cheio"></i><i></i></span></td>
+                  <td>Máquina parada custa caro: o cliente paga por rapidez e volta na próxima quebra.</td>
+                  <td>Exige prazo curto cumprido; um atraso quebra a confiança.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Protótipos para startups e <abbr title="Pesquisa e Desenvolvimento">P&amp;D</abbr></th>
+                  <td><span class="nota">4/5</span><span class="pips" aria-hidden="true"><i class="cheio"></i><i class="cheio"></i><i class="cheio"></i><i class="cheio"></i><i></i></span></td>
+                  <td>Muitos pedidos pequenos por mês e nenhum setor de compras: a plataforma vira o fornecedor padrão.</td>
+                  <td>Clientes jovens podem sumir; desenhos mudam muito entre versões.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Usinagem <abbr title="Comando Numérico Computadorizado">CNC</abbr></th>
+                  <td><span class="nota">3/5</span><span class="pips" aria-hidden="true"><i class="cheio"></i><i class="cheio"></i><i class="cheio"></i><i></i><i></i></span></td>
+                  <td>Peças de maior valor e demanda constante na indústria.</td>
+                  <td>Já tem concorrente no Brasil (Mech4u) e o orçamento automático é mais difícil.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Caldeiraria pesada</th>
+                  <td><span class="nota">2/5</span><span class="pips" aria-hidden="true"><i class="cheio"></i><i class="cheio"></i><i></i><i></i><i></i></span></td>
+                  <td>Pedidos grandes e de alto valor.</td>
+                  <td>Projetos únicos, negociação longa, frete pesado; difícil dar preço na hora.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="tese-rodape"><span>Avaliação própria; nota não é recomendação financeira nem previsão de retorno. Critérios: intensidade da dor, recorrência, fragmentação, capital necessário.</span><span class="tese-pagina" aria-hidden="true">05</span></p>
+        </section>
+
+        <!-- ===== 06 PRINCIPAIS TENDÊNCIAS ===== -->
+        <section id="tendencias" class="tese-secao" aria-labelledby="t-06">
+          <p class="sobrelinha">Principais tendências</p>
+          <h2 id="t-06">Cinco tendências redesenham o mercado</h2>
+          <p class="tese-subtitulo">Juros, software e regras fiscais empurram a indústria para comprar capacidade em vez de máquinas.</p>
+
+          <ol class="tendencias" role="list">
+            <li>
+              <span class="tendencia-num" aria-hidden="true">01</span>
+              <div>
+                <h3>Juros altos levam a terceirizar em vez de comprar máquina</h3>
+                <p>Com a Selic em 13,75% ao ano, financiar um laser novo pesa; contratar a peça pronta fica mais atraente.</p>
+              </div>
+            </li>
+            <li>
+              <span class="tendencia-num" aria-hidden="true">02</span>
+              <div>
+                <h3>Cotação instantânea por software</h3>
+                <p>O preço sai do desenho em segundos, sem esperar um orçamentista. Foi o que fez a Xometry e a Fractory crescerem.</p>
+              </div>
+            </li>
+            <li>
+              <span class="tendencia-num" aria-hidden="true">03</span>
+              <div>
+                <h3>Digitalização de pequenas indústrias</h3>
+                <p>Oficinas que viviam de indicação começam a receber pedidos pelo celular e a controlar a agenda das máquinas.</p>
+              </div>
+            </li>
+            <li>
+              <span class="tendencia-num" aria-hidden="true">04</span>
+              <div>
+                <h3>Reforma tributária mudando a emissão de notas fiscais</h3>
+                <p>As novas regras mudam como a intermediação é tributada e como as notas são emitidas; quem automatizar isso facilita a vida das parceiras.</p>
+              </div>
+            </li>
+            <li>
+              <span class="tendencia-num" aria-hidden="true">05</span>
+              <div>
+                <h3>Plataformas que capturam recorrência</h3>
+                <p>O valor está no cliente que volta: histórico de peças, recompra com um clique e fornecedores já avaliados.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="implicacao">
+            <p class="implicacao-rotulo">Sinal comum</p>
+            <p class="implicacao-texto">A vantagem passa a ser coordenar capacidade, não possuir máquinas.</p>
+          </div>
+
+          <p class="tese-rodape"><span>Leitura própria de tendências; Selic: Banco Central / Copom.</span><span class="tese-pagina" aria-hidden="true">06</span></p>
+        </section>
+
+        <!-- ===== 07 DORES DE MERCADO ===== -->
+        <section id="dores" class="tese-secao" aria-labelledby="t-07">
+          <p class="sobrelinha">Dores de mercado</p>
+          <h2 id="t-07">A fragmentação é a maior fonte de oportunidades</h2>
+          <p class="tese-subtitulo">Muitos compradores pequenos e muitas oficinas pequenas: cada dor vira um serviço que a plataforma pode cobrar.</p>
+
+          <div class="tabela-rolagem" tabindex="0" role="region" aria-labelledby="cap-dores">
+            <table class="tabela-tese">
+              <caption id="cap-dores">Mapa de dores, oportunidades e modelo de receita</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Dor</th>
+                  <th scope="col">Oportunidade</th>
+                  <th scope="col">Modelo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Orçamento demora dias</th>
+                  <td>Cotação instantânea a partir do desenho</td>
+                  <td>Comissão por pedido</td>
+                </tr>
+                <tr>
+                  <th scope="row">Máquina ociosa</th>
+                  <td>Fluxo de pedidos para preencher a agenda</td>
+                  <td>Comissão por pedido</td>
+                </tr>
+                <tr>
+                  <th scope="row">Fornecedor sem canal de vendas</th>
+                  <td>Canal digital pronto, sem vendedor nem site</td>
+                  <td>Comissão + assinatura do painel de gestão (futuro)</td>
+                </tr>
+                <tr>
+                  <th scope="row">Qualidade incerta</th>
+                  <td>Avaliações das parceiras e garantia da peça</td>
+                  <td>Margem sobre a tabela de custos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="texto-suave">A comissão prevista no modelo simulado é de <span data-dado="comissaoFaixa">15% a 20%</span> por pedido.</p>
+
+          <p class="tese-rodape"><span>Mapa de oportunidades: análise própria; validar dor, pagador e <i lang="en">unit economics</i> (ganho e custo por pedido) em campo.</span><span class="tese-pagina" aria-hidden="true">07</span></p>
+        </section>
+
+        <!-- ===== 08 TESE DE INVESTIMENTO ===== -->
+        <section id="tese" class="tese-secao" aria-labelledby="t-08">
+          <p class="sobrelinha">Tese de investimento</p>
+          <h2 id="t-08">A tese: infraestrutura de coordenação da fabricação</h2>
+          <p class="tese-subtitulo">Começar estreito e regional, ganhar confiança e só então ampliar.</p>
+
+          <ol class="passos" role="list">
+            <li class="cartao passo">
+              <span class="passo-num" aria-hidden="true">1</span>
+              <h3><span class="visualmente-oculto">Passo 1: </span>Comece pela dor</h3>
+              <p>Orçamento instantâneo para peças urgentes de chapa em Minas Gerais.</p>
+            </li>
+            <li class="cartao passo">
+              <span class="passo-num" aria-hidden="true">2</span>
+              <h3><span class="visualmente-oculto">Passo 2: </span>Construa confiança</h3>
+              <p>Qualidade conferida, avaliações, garantia e prazo cumprido.</p>
+            </li>
+            <li class="cartao passo">
+              <span class="passo-num" aria-hidden="true">3</span>
+              <h3><span class="visualmente-oculto">Passo 3: </span>Escale a coordenação</h3>
+              <p>Recorrência, novas regiões e painel de gestão por assinatura para as metalúrgicas.</p>
+            </li>
+          </ol>
+
+          <div class="implicacao">
+            <p class="implicacao-rotulo">Próximo passo</p>
+            <p class="implicacao-texto">Validar com 10 compradores e 5 metalúrgicas da Grande BH (Belo Horizonte).</p>
+          </div>
+
+          <p class="tese-rodape"><span>Plano próprio do grupo; etapas sem data e sem valores de investimento.</span><span class="tese-pagina" aria-hidden="true">08</span></p>
+        </section>
+
+        <!-- ===== 09 RISCOS E DILIGÊNCIA ===== -->
+        <section id="riscos" class="tese-secao" aria-labelledby="t-09">
+          <p class="sobrelinha">Riscos e diligência</p>
+          <h2 id="t-09">Capacidade ociosa não elimina riscos de execução</h2>
+          <p class="tese-subtitulo">Antes de investir, é preciso provar que o modelo segura os dois lados da plataforma.</p>
+
+          <div class="riscos-grade">
+            <div>
+              <h3 class="titulo-com-icone">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg>
+                Alertas
+              </h3>
+              <ul class="riscos" role="list">
+                <li>
+                  <p class="risco-nome">Negócio fechado por fora da plataforma (desintermediação)</p>
+                  <p class="mitigacao"><strong>Mitigação:</strong> garantia, pagamento protegido e histórico só valem dentro da plataforma; a metalúrgica não precisa orçar nem cobrar.</p>
+                </li>
+                <li>
+                  <p class="risco-nome">Qualidade da peça</p>
+                  <p class="mitigacao"><strong>Mitigação:</strong> seleção das parceiras, avaliação a cada pedido e refazer a peça se ela vier fora da medida.</p>
+                </li>
+                <li>
+                  <p class="risco-nome">Liquidez inicial (o problema do ovo e da galinha)</p>
+                  <p class="mitigacao"><strong>Mitigação:</strong> começar só na Grande BH e só em chapa, para concentrar pedidos e parceiras no mesmo lugar.</p>
+                </li>
+                <li>
+                  <p class="risco-nome">Capital de giro (pagar a metalúrgica antes de receber do cliente)</p>
+                  <p class="mitigacao"><strong>Mitigação:</strong> cobrar o cliente no pedido, antes da produção, e repassar à parceira na entrega.</p>
+                </li>
+                <li>
+                  <p class="risco-nome">Nota fiscal na intermediação</p>
+                  <p class="mitigacao"><strong>Mitigação:</strong> definir com contador quem emite cada nota e automatizar a emissão desde o início.</p>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="titulo-com-icone">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                Evidências exigidas
+              </h3>
+              <ul class="evidencias" role="list">
+                <li class="cartao">
+                  <p class="evidencia-nome">Taxa de recompra</p>
+                  <p class="texto-suave">Quantos clientes fazem um segundo pedido.</p>
+                </li>
+                <li class="cartao">
+                  <p class="evidencia-nome">Tempo de cotação</p>
+                  <p class="texto-suave">Do envio do desenho ao preço na tela.</p>
+                </li>
+                <li class="cartao">
+                  <p class="evidencia-nome">% entregue no prazo</p>
+                  <p class="texto-suave">Pedidos entregues na data prometida.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="tese-rodape"><span>Lista de riscos própria; mitigações são propostas, ainda não testadas.</span><span class="tese-pagina" aria-hidden="true">09</span></p>
+        </section>
+
+        <!-- ===== 10 FONTES E LIMITAÇÕES ===== -->
+        <section id="fontes" class="tese-secao" aria-labelledby="t-10">
+          <p class="sobrelinha">Fontes e limitações</p>
+          <h2 id="t-10">Base de pesquisa e limites da análise</h2>
+          <p class="tese-subtitulo">De onde vêm os números desta página e o que eles não dizem.</p>
+
+          <div class="grade grade-2">
+            <div>
+              <h3>Fontes</h3>
+              <dl class="fontes-lista">
+                <dt>Indústria</dt>
+                <dd><a href="https://www.portaldaindustria.com.br/cni/">CNI (Confederação Nacional da Indústria)</a>: UCI e intenção de investimento (que caiu pela terceira vez seguida em agosto de 2026).</dd>
+                <dt>Juros</dt>
+                <dd><a href="https://www.bcb.gov.br/">Banco Central do Brasil</a> / Copom: Selic.</dd>
+                <dt>Aço</dt>
+                <dd><a href="https://acobrasil.org.br/">Instituto Aço Brasil</a>: produção de aço bruto por estado.</dd>
+                <dt>Plataformas</dt>
+                <dd><a href="https://investors.xometry.com/">Xometry, relações com investidores</a> (resultados de 2025); <a href="https://fractory.com/">Fractory</a> e declarações do fundador.</dd>
+                <dt>Concorrência</dt>
+                <dd><a href="https://mech4u.com.br/">Mech4u</a>: São José dos Campos (SP), desde 2020, foco em usinagem CNC.</dd>
+              </dl>
+              <p class="texto-suave">Xometry, Fractory e Mech4u aparecem aqui só como referência de mercado; não são parceiras.</p>
+            </div>
+            <div>
+              <h3>Limitações</h3>
+              <ul class="lista-marcada">
+                <li>Não existe dado oficial de “fabricação sob demanda” como mercado separado.</li>
+                <li>Números de empresas estrangeiras não se transferem diretamente ao Brasil.</li>
+                <li>Os preços do site são simulados.</li>
+                <li>O ranking de segmentos é indicativo.</li>
+              </ul>
+              <div class="aviso">
+                <p><strong>Recomendação:</strong> fazer o dimensionamento de baixo para cima (<i lang="en">sizing bottom-up</i>: número de compradores × pedidos por mês × valor médio) antes de investir.</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="tese-rodape"><span>Dados consultados até outubro de 2026.</span><span class="tese-pagina" aria-hidden="true">10</span></p>
+        </section>
+
+        <!-- ===== 11 CONCEITO E PERSONAS ===== -->
+        <section id="conceito" class="tese-secao tese-final" aria-labelledby="t-11">
+          <p class="sobrelinha">Conceito e personas</p>
+          <h2 id="t-11">Quem é a <span class="js-nome">Forja</span> e para quem ela existe</h2>
+          <p class="tese-subtitulo">O conceito da startup e as personas Rafael, Seu Antônio e Camila estão na página Sobre.</p>
+          <div class="grupo-botoes">
+            <a class="botao" href="sobre.html#titulo-conceito">
+              Ver conceito e personas
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="botao botao-secundario" href="orcamento.html">Testar o orçamento</a>
+          </div>
+          <p class="tese-rodape"><span>Continua na página Sobre o projeto.</span><span class="tese-pagina" aria-hidden="true">11</span></p>
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="4" y="4" width="24" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 23 L21 11" stroke="#f26a1b" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="10" r="3" fill="#f26a1b"/></svg>
+        <span class="js-nome">Forja</span>
+      </a>
+      <p class="js-frase">Sua peça de metal sob medida, com preço na hora.</p>
+      <ul class="rodape-links">
+        <li><a href="orcamento.html">Fazer orçamento</a></li>
+        <li><a href="parceiro.html">Para metalúrgicas</a></li>
+        <li><a href="mercado.html">Tese do setor</a></li>
+        <li><a href="sobre.html">Sobre o projeto</a></li>
+      </ul>
+      <p class="rodape-aviso js-aviso">Startup fictícia criada para o Projeto Vitrine</p>
+      <p class="texto-suave rodape-nota">Preços, parceiras, pedidos e depoimentos são simulados. Nenhum dado é coletado e nenhum pagamento é real.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="data/precos.js"></script>
+  <script src="data/materiais.js"></script>
+  <script src="data/parceiros.js"></script>
+  <script src="js/comum.js"></script>
+  <!-- Esta página não precisa de script próprio: o conteúdo é estático. -->
+</body>
+</html>

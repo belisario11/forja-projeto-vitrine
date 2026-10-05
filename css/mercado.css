@@ -1,0 +1,776 @@
+/* =============================================================
+   PÁGINA MERCADO (tese do setor)
+   Segue a estrutura do "Ex Setor.pdf": cada seção tem rótulo
+   pequeno (.sobrelinha), título grande, subtítulo cinza, conteúdo
+   e uma linha de fonte com o número da "página" (01, 02...).
+   Mobile first: o padrão é o celular; telas maiores usam @media.
+   ============================================================= */
+
+/* ---------- Capa da tese ---------- */
+.capa-tese {
+  padding: 3rem 0 2.5rem;
+  border-bottom: 4px solid var(--cor-faisca);
+}
+
+.capa-tese h1 {
+  max-width: 16ch;
+  margin-bottom: 0.4em;
+}
+
+.capa-subtitulo {
+  max-width: 42rem;
+  font-size: 1.2rem;
+  color: #c9ccd1; /* cinza claro com contraste AA sobre grafite */
+}
+
+.capa-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+.capa-data {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.capa-data svg {
+  width: 20px;
+  height: 20px;
+  color: var(--cor-faisca);
+}
+
+.capa-nota {
+  color: #c9ccd1;
+  font-weight: 400;
+}
+
+.capa-aviso {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+  color: #c9ccd1;
+}
+
+/* ---------- Layout: sumário + conteúdo ---------- */
+.tese-layout {
+  display: grid;
+  gap: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+/* Evita que o grid estoure a largura no celular (tabelas longas) */
+.tese-conteudo {
+  min-width: 0;
+}
+
+/* ---------- Sumário ---------- */
+.sumario {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+}
+
+.sumario-titulo {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.sumario ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.sumario a {
+  display: flex;
+  align-items: center;
+  min-height: 44px; /* área de toque confortável no celular */
+  gap: 0.6rem;
+  padding: 0.4rem 0.3rem;
+  color: var(--cor-texto);
+  text-decoration: none;
+  border-radius: var(--raio-pequeno);
+}
+
+.sumario a:hover {
+  background: var(--cor-laranja-fundo);
+  color: var(--cor-texto);
+  text-decoration: underline;
+}
+
+.sumario-num {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  color: var(--cor-laranja-texto);
+  min-width: 1.6rem;
+}
+
+/* Em telas médias, o sumário vira duas colunas para ocupar menos altura */
+@media (min-width: 640px) {
+  .sumario ol {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.5rem;
+  }
+}
+
+/* No computador, o sumário fica fixo ao lado enquanto a página rola */
+@media (min-width: 1024px) {
+  .tese-layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .sumario {
+    position: sticky;
+    top: 88px; /* abaixo do cabeçalho fixo */
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+  }
+
+  .sumario ol {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Seções da tese ---------- */
+.tese-secao {
+  padding: 2.5rem 0 1rem;
+  border-top: 2px solid var(--cor-grafite);
+  scroll-margin-top: 84px; /* o link do sumário não fica escondido sob o cabeçalho */
+}
+
+.tese-secao:first-child {
+  border-top: 0;
+}
+
+.tese-secao h2 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  max-width: 22ch;
+}
+
+.tese-subtitulo {
+  max-width: 44rem;
+  font-size: 1.15rem;
+  color: var(--cor-texto-suave);
+  margin-bottom: 1.75rem;
+}
+
+.tese-secao h3 {
+  margin-top: 1.5rem;
+}
+
+/* Linha de fonte + número da página, como o rodapé de cada slide do PDF */
+.tese-rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin: 2rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--cor-borda);
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+}
+
+.tese-pagina {
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--cor-laranja-texto);
+  flex-shrink: 0;
+}
+
+/* Lista sem marcadores (usada em várias grades) */
+.indicadores,
+.estatisticas,
+.papeis,
+.subsetores,
+.tendencias,
+.passos,
+.riscos,
+.evidencias {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Lista com marcador quadrado laranja */
+.lista-marcada {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.lista-marcada li {
+  margin-bottom: 0.35rem;
+}
+
+.lista-marcada li::marker {
+  content: "■  ";
+  color: var(--cor-faisca);
+  font-size: 0.8em;
+}
+
+/* ---------- 01 Indicadores ---------- */
+.indicadores {
+  margin-top: 1.5rem;
+}
+
+.indicador .numero-grande small {
+  font-size: 0.45em;
+  font-weight: 700;
+}
+
+.indicador-rotulo {
+  margin: 0.6rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.indicador-leitura {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-start;
+  margin-bottom: 0.25rem;
+  color: var(--cor-texto-suave);
+}
+
+.indicador-leitura svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: var(--cor-laranja-texto);
+}
+
+/* Caixa de implicação (destaque grafite com barra laranja) */
+.implicacao {
+  margin-top: 1.75rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--cor-grafite);
+  color: #f1f1ef;
+  border-left: 6px solid var(--cor-faisca);
+  border-radius: var(--raio-pequeno);
+}
+
+.implicacao-rotulo {
+  margin: 0 0 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffb37f;
+}
+
+.implicacao-texto {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ---------- 02 Subsetores numerados ---------- */
+.subsetores {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.subsetor {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.subsetor h4 {
+  margin-bottom: 0.2rem;
+}
+
+.subsetor p {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+.subsetor-num,
+.tendencia-num {
+  font-family: var(--fonte-titulo);
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--cor-laranja-texto);
+  min-width: 2.6rem;
+}
+
+@media (min-width: 760px) {
+  .subsetores {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
+}
+
+.setor-colunas .cartao h3 {
+  margin-top: 0;
+}
+
+.lente {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.6rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--cor-laranja-texto);
+}
+
+/* ---------- 03 Crescimento ---------- */
+.estatistica-nome {
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.estatisticas .numero-grande {
+  margin-bottom: 0.5rem;
+}
+
+.grafico {
+  margin: 2rem 0 0;
+  padding: 1.25rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.grafico figcaption {
+  display: grid;
+  gap: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.grafico-svg {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+}
+
+.grafico-valor {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 800;
+  fill: var(--cor-texto);
+}
+
+.grafico-eixo {
+  font-family: var(--fonte-texto);
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--cor-texto);
+}
+
+.grafico-nota {
+  font-family: var(--fonte-texto);
+  font-size: 14px;
+  fill: var(--cor-texto-suave);
+}
+
+/* ---------- 04 Matriz 2×2 ---------- */
+.matriz-area {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.matriz {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.quadrante {
+  padding: 1.25rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.quadrante h3 {
+  margin: 0.25rem 0 0.4rem;
+}
+
+.quadrante p:last-child {
+  margin-bottom: 0;
+}
+
+.quadrante-tag {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+/* Quadrante prioritário: borda grossa + selo com texto (não só cor) */
+.quadrante-prioridade {
+  background: var(--cor-laranja-fundo);
+  border: 2px solid var(--cor-laranja);
+}
+
+.quadrante-selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: var(--cor-laranja-texto);
+}
+
+.quadrante-selo svg {
+  width: 20px;
+  height: 20px;
+}
+
+.matriz-eixo {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+/* No celular os eixos não fazem sentido (os quadrantes ficam em coluna) */
+.matriz-eixo {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .matriz-area {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "eixoy matriz"
+      ".     eixox";
+  }
+
+  .matriz {
+    grid-area: matriz;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .matriz-eixo {
+    display: block;
+  }
+
+  .matriz-eixo-y {
+    grid-area: eixoy;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+  }
+
+  .matriz-eixo-x {
+    grid-area: eixox;
+    text-align: center;
+  }
+}
+
+.subtitulo-bloco {
+  margin-top: 2.5rem !important;
+}
+
+.papeis h4 {
+  margin-bottom: 0.3rem;
+}
+
+/* ---------- Tabelas da tese ---------- */
+.tabela-tese {
+  min-width: 620px; /* no celular, a tabela rola dentro da caixa */
+}
+
+.tabela-tese tbody th {
+  font-weight: 700;
+}
+
+.tabela-tese tbody tr:nth-child(even) {
+  background: #faf9f7;
+}
+
+.nota {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cor-laranja-texto);
+  white-space: nowrap;
+}
+
+/* Pontinhos decorativos da nota (o texto "5/5" já informa a nota) */
+.pips {
+  display: flex;
+  gap: 3px;
+  margin-top: 0.2rem;
+}
+
+.pips i {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--cor-laranja);
+  border-radius: 2px;
+}
+
+.pips i.cheio {
+  background: var(--cor-laranja);
+}
+
+/* Região rolável da tabela precisa mostrar o foco do teclado */
+.tabela-rolagem:focus-visible {
+  outline: 3px solid var(--cor-faisca);
+}
+
+/* ---------- 06 Tendências ---------- */
+.tendencias li {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.tendencias h3 {
+  margin: 0 0 0.3rem;
+}
+
+.tendencias p {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+/* ---------- 08 Passos ---------- */
+.passos {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.passo h3 {
+  margin-top: 0.5rem;
+}
+
+.passo-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--cor-laranja);
+  color: #fff;
+  font-family: var(--fonte-titulo);
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+@media (min-width: 760px) {
+  .passos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- 09 Riscos ---------- */
+.riscos-grade {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .riscos-grade {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.titulo-com-icone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0 !important;
+}
+
+.titulo-com-icone svg {
+  width: 26px;
+  height: 26px;
+  color: var(--cor-laranja-texto);
+  flex-shrink: 0;
+}
+
+.riscos li {
+  padding: 1rem 0 1rem 1rem;
+  border-left: 4px solid var(--cor-alerta);
+  margin-bottom: 0.75rem;
+  background: var(--cor-superficie);
+  padding-right: 1rem;
+  border-radius: 0 var(--raio-pequeno) var(--raio-pequeno) 0;
+}
+
+.risco-nome {
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+.mitigacao {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+.evidencias {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.evidencias .cartao {
+  padding: 1rem 1.25rem;
+}
+
+.evidencia-nome {
+  margin-bottom: 0.2rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* ---------- 10 Fontes ---------- */
+.fontes-lista {
+  margin: 0 0 1rem;
+}
+
+.fontes-lista dt {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-laranja-texto);
+}
+
+.fontes-lista dd {
+  margin: 0.15rem 0 0;
+}
+
+/* ---------- 11 Final ---------- */
+.tese-final {
+  padding-bottom: 0;
+}
+
+/* Nota do rodapé (substitui o estilo inline do modelo) */
+.rodape-nota {
+  color: #c9ccd1;
+}
+
+/* ---------- Impressão ----------
+   A tese pode ser impressa como um documento para o investidor. */
+@media print {
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+
+  .menu,
+  .menu-botao,
+  .pular-link,
+  .sumario,
+  .rodape-links,
+  .grupo-botoes {
+    display: none !important;
+  }
+
+  .cabecalho {
+    position: static;
+    background: #fff;
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+
+  .cabecalho .logo,
+  .rodape .logo {
+    color: #000;
+  }
+
+  .capa-tese,
+  .implicacao,
+  .rodape {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .capa-subtitulo,
+  .capa-nota,
+  .capa-aviso,
+  .rodape,
+  .rodape-nota,
+  .rodape-aviso {
+    color: #333 !important;
+  }
+
+  .capa-tese .sobrelinha,
+  .implicacao-rotulo {
+    color: #a63c09 !important;
+  }
+
+  .tese-layout {
+    display: block;
+    padding: 0;
+  }
+
+  .tese-secao {
+    break-before: page;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .tese-secao:first-child {
+    break-before: auto;
+  }
+
+  .cartao,
+  .quadrante,
+  .subsetor,
+  .tendencias li,
+  .riscos li,
+  .implicacao,
+  .grafico,
+  tr {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+
+  .tabela-rolagem {
+    overflow: visible;
+  }
+
+  .tabela-tese {
+    min-width: 0;
+  }
+
+  thead th {
+    background: #eee !important;
+    color: #000 !important;
+  }
+
+  /* Mostra o endereço dos links das fontes no papel */
+  .fontes-lista a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #333;
+  }
+}

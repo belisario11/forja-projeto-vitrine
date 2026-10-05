@@ -1,0 +1,488 @@
+/* =============================================================
+   PAINEL DA METALÚRGICA (parceiro.html)
+   Só o que é específico desta página. O resto vem de estilo.css.
+   Mobile first: o padrão é o celular; telas maiores usam @media.
+   ============================================================= */
+
+/* Lista sem marcadores (usada nas listas de cartões) */
+.lista-limpa {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Faixa de abertura ---------- */
+.painel-abertura .selo {
+  margin-bottom: 1rem;
+}
+
+.painel-empresa {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.painel-empresa .icone {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.painel-empresa p {
+  margin: 0;
+}
+
+.painel-empresa-nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.painel-subtitulo {
+  font-size: 1.6rem;
+}
+
+/* Passos numerados com número grande em laranja */
+.painel-passos {
+  list-style: none;
+  counter-reset: passo;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.painel-passos li {
+  counter-increment: passo;
+  position: relative;
+  padding-left: 3rem;
+}
+
+.painel-passos li::before {
+  content: counter(passo);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cor-laranja);
+  color: #fff;
+  font-weight: 700;
+}
+
+.painel-passos strong {
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .painel-passos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- Máquinas ---------- */
+.maquina-nome {
+  margin-bottom: 0.25rem;
+}
+
+.maquina-processo {
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--cor-laranja-texto);
+}
+
+.maquina-detalhe {
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Grade do painel (ofertas | ocupação + ganhos) ---------- */
+.painel-grade {
+  display: grid;
+  gap: 2rem;
+}
+
+.painel-lateral {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.painel-titulo-menor {
+  font-size: 1.8rem;
+}
+
+@media (min-width: 960px) {
+  .painel-grade {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+}
+
+/* O título recebe foco pelo JS; o contorno aparece só no teclado */
+#titulo-ofertas:focus {
+  outline: none;
+}
+
+#titulo-ofertas:focus-visible {
+  outline: 3px solid var(--cor-faisca);
+}
+
+/* ---------- Interruptor de disponibilidade ---------- */
+.disponibilidade {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.disponibilidade-rotulo {
+  font-weight: 700;
+}
+
+.interruptor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.3rem 0.6rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--cor-texto);
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--raio-pequeno);
+  cursor: pointer;
+}
+
+.interruptor:hover {
+  border-color: var(--cor-borda);
+}
+
+/* Trilho do interruptor: borda escura para ter contraste mesmo desligado */
+.interruptor-trilho {
+  position: relative;
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  background: #e9e7e2;
+  border: 2px solid #6b727b;
+  transition: background 0.2s;
+}
+
+.interruptor-bolinha {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #6b727b;
+  transition: transform 0.2s, background 0.2s;
+}
+
+/* Ligado: trilho verde, bolinha à direita (posição também indica o estado) */
+.interruptor[aria-checked="true"] .interruptor-trilho {
+  background: var(--cor-sucesso);
+  border-color: var(--cor-sucesso);
+}
+
+.interruptor[aria-checked="true"] .interruptor-bolinha {
+  transform: translateX(22px);
+  background: #fff;
+}
+
+.interruptor-texto {
+  min-width: 5.5rem; /* evita que o layout pule entre "Ligado" e "Desligado" */
+  text-align: left;
+}
+
+/* .botao usa display:inline-flex, que venceria o atributo "hidden".
+   Esta regra garante que o botão "Reiniciar" fique escondido de verdade. */
+#botao-reiniciar[hidden] {
+  display: none;
+}
+
+#aviso-invisivel .aviso,
+#ofertas-fim-mensagem .aviso {
+  margin-bottom: 1rem;
+}
+
+/* ---------- Barras (ofertas, ocupação, média) ----------
+   A parte vazia é listrada: mostra "tempo livre" sem depender só da cor. */
+.barra {
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #8a8f96;
+  background: repeating-linear-gradient(
+    -45deg,
+    #f1efea 0,
+    #f1efea 4px,
+    #d4d2cc 4px,
+    #d4d2cc 8px
+  );
+}
+
+.barra-preenchida {
+  height: 100%;
+  width: 0;
+  background: var(--cor-laranja);
+  transition: width 0.6s ease;
+}
+
+/* ---------- Ofertas ---------- */
+.lista-ofertas {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.oferta {
+  border-left: 5px solid var(--cor-faisca);
+  animation: oferta-chega 0.4s ease-out;
+  transition: opacity 0.8s ease;
+}
+
+@keyframes oferta-chega {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.oferta-etiqueta {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: var(--cor-laranja-fundo);
+  color: var(--cor-laranja-texto);
+}
+
+.oferta-titulo {
+  margin-bottom: 0.4rem;
+}
+
+.oferta-detalhes {
+  list-style: none;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  color: var(--cor-texto-suave);
+}
+
+.oferta-valor {
+  font-size: 1.1rem;
+}
+
+.oferta-valor strong {
+  font-family: var(--fonte-titulo);
+  font-size: 1.7rem;
+  color: var(--cor-sucesso);
+}
+
+.oferta-tempo {
+  margin-bottom: 0.9rem;
+}
+
+.oferta-tempo-texto {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+/* Pouco tempo: barra cor de alerta e texto em negrito (não só cor) */
+.oferta-urgente .barra-tempo .barra-preenchida {
+  background: var(--cor-alerta);
+}
+
+.oferta-urgente .oferta-tempo-texto {
+  color: var(--cor-alerta);
+  font-weight: 700;
+}
+
+.barra-tempo .barra-preenchida {
+  transition: width 1s linear;
+}
+
+/* Botões ocupam a largura toda no celular (alvo de toque grande) */
+.oferta .grupo-botoes .botao {
+  flex: 1 1 8rem;
+}
+
+.oferta-resultado {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: var(--raio-pequeno);
+}
+
+.oferta-resultado:focus {
+  outline: 3px solid var(--cor-faisca);
+  outline-offset: 2px;
+}
+
+.oferta-aceita {
+  border-left-color: var(--cor-sucesso);
+}
+
+.oferta-aceita .oferta-resultado {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.oferta-recusada {
+  border-left-color: #8a8f96;
+}
+
+.oferta-recusada .oferta-resultado {
+  background: #eeece7;
+  color: var(--cor-texto);
+}
+
+.oferta-sumindo {
+  opacity: 0;
+}
+
+/* ---------- Ocupação da semana ---------- */
+.ocupacao-lista {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.ocupacao-dia {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: var(--raio-pequeno);
+  transition: background 0.4s;
+}
+
+.ocupacao-rotulo {
+  font-weight: 700;
+}
+
+.ocupacao-numero {
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Dia que acabou de receber um pedido */
+.ocupacao-mudou {
+  background: var(--cor-laranja-fundo);
+}
+
+.ocupacao-mudou .ocupacao-numero {
+  font-weight: 700;
+}
+
+.ocupacao-media {
+  padding-top: 1rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.ocupacao-media-texto {
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+}
+
+.ocupacao-media .barra {
+  height: 20px;
+}
+
+.tempo-livre {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+}
+
+.tempo-livre svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--cor-laranja-texto);
+}
+
+/* ---------- Ganhos do mês ---------- */
+.ganhos-grade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.ganho {
+  display: flex;
+  flex-direction: column-reverse; /* número em cima, rótulo embaixo */
+  padding: 0.75rem;
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+}
+
+.ganho-largo {
+  grid-column: 1 / -1;
+}
+
+.ganho dt {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+.ganho dd {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--cor-laranja-texto);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Futuro ---------- */
+.painel-futuro {
+  display: grid;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .painel-futuro {
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.painel-chamada {
+  margin: 1.5rem 0 0;
+}
+
+/* ---------- Movimento reduzido ----------
+   estilo.css já zera animações; aqui garantimos que nada desliza. */
+@media (prefers-reduced-motion: reduce) {
+  .oferta {
+    animation: none;
+  }
+}
+
+/* Explicação das siglas logo abaixo dos cartões de máquinas */
+.maquinas-siglas {
+  margin-top: 1rem;
+}

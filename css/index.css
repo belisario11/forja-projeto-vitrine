@@ -1,0 +1,244 @@
+/* =============================================================
+   ESTILOS DA PÁGINA INICIAL (index.html)
+   Só o que é específico desta página; o resto vem de estilo.css.
+   ============================================================= */
+
+/* ---------- 1. Herói ---------- */
+.heroi {
+  padding: 2.5rem 0 3rem;
+  background: var(--cor-fundo);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.heroi-grade {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.heroi-selo {
+  margin: 0 0 1rem;
+}
+
+.heroi-selo svg {
+  width: 16px;
+  height: 16px;
+}
+
+.heroi-ilustracao {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.heroi-ilustracao svg {
+  display: block;
+  width: 100%;
+}
+
+/* Faísca do laser: cresce e diminui sem parar (efeito de corte) */
+.faisca {
+  transform-origin: 200px 110px;
+  transform-box: view-box;
+  animation: faiscar 0.6s ease-in-out infinite alternate;
+}
+
+.laser-feixe {
+  animation: piscar 0.3s linear infinite alternate;
+}
+
+@keyframes faiscar {
+  from { transform: scale(0.7); opacity: 0.7; }
+  to   { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes piscar {
+  from { opacity: 0.6; }
+  to   { opacity: 1; }
+}
+
+/* Quem pediu menos movimento vê a faísca parada */
+@media (prefers-reduced-motion: reduce) {
+  .faisca,
+  .laser-feixe {
+    animation: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .heroi {
+    padding: 4.5rem 0;
+  }
+
+  .heroi-grade {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+/* ---------- Listas que viram grade de cartões ---------- */
+.lista-beneficios,
+.lista-numeros,
+.passos {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+/* ---------- 3. Como funciona ---------- */
+.passos {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.passo {
+  position: relative;
+}
+
+/* O cabeçalho fica fixo no topo: este espaço evita que ele cubra o título
+   quando alguém clica em "Como funciona" no menu */
+#como-funciona {
+  scroll-margin-top: 4.5rem;
+}
+
+/* Número do passo no canto do cartão */
+.passo-numero {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-family: var(--fonte-titulo);
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--cor-texto-suave);
+}
+
+@media (min-width: 640px) {
+  .passos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* No computador: 4 colunas com uma seta decorativa entre os passos */
+@media (min-width: 960px) {
+  .passos {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .passo:not(:last-child)::after {
+    content: "→"; /* para navegadores antigos */
+    content: "→" / ""; /* depois da barra vem o texto alternativo: vazio = leitor de tela ignora a seta */
+    position: absolute;
+    top: 50%;
+    right: -1.6rem;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--cor-faisca);
+  }
+}
+
+.uber-nota {
+  margin: 0;
+}
+
+/* ---------- 4 e 5. Benefícios ---------- */
+.lista-beneficios h3 {
+  font-size: 1.3rem;
+}
+
+/* Ícone de "certo" ao lado do título (seção escura) */
+.icone-titulo {
+  width: 22px;
+  height: 22px;
+  margin-right: 0.35rem;
+  vertical-align: -3px;
+  color: #ffb37f;
+}
+
+.comissao-nota {
+  font-size: 1.15rem;
+}
+
+/* ---------- 6. Números de mercado ---------- */
+.lista-numeros .numero-grande {
+  margin-bottom: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.leitura {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.numero-grande abbr {
+  text-decoration: none;
+}
+
+.link-tese {
+  font-weight: 700;
+}
+
+/* ---------- 7. Depoimentos ---------- */
+.depoimentos {
+  margin-top: 1.5rem;
+}
+
+.depoimento {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.depoimento .selo {
+  align-self: flex-start;
+}
+
+.depoimento blockquote {
+  margin: 0;
+  font-size: 1.1rem;
+  flex-grow: 1;
+}
+
+.depoimento blockquote p {
+  margin: 0;
+}
+
+.depoimento figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--cor-texto-suave);
+}
+
+.depoimento figcaption strong {
+  color: var(--cor-texto);
+}
+
+/* Avatar: inicial do nome dentro de um círculo (sem foto) */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--cor-grafite);
+  color: #fff;
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+/* ---------- 8. Chamada final ---------- */
+.chamada-final {
+  background: var(--cor-laranja-fundo);
+  border-top: 4px solid var(--cor-faisca);
+  text-align: center;
+}
+
+.chamada-final .grupo-botoes {
+  justify-content: center;
+}
